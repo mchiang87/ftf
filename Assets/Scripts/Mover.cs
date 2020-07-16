@@ -8,6 +8,8 @@ public abstract class Mover : Fighter
     protected BoxCollider2D boxCollider;
     protected Vector3 moveDelta;
     protected RaycastHit2D hit;
+    protected bool isMoving;
+    protected Vector2 lastMove;
     public float ySpeed = 0.75f;
     public float xSpeed = 1.0f;
 
@@ -19,8 +21,15 @@ public abstract class Mover : Fighter
 
     protected virtual void UpdateMotor(Vector3 input)
     {
+        isMoving = false;
         // Reset MoveDelta
         moveDelta = new Vector3(input.x * xSpeed, input.y * ySpeed, 0);
+        if (!Mathf.Approximately(moveDelta.x, 0) || !Mathf.Approximately(moveDelta.y, 0))
+        {
+            isMoving = true;
+            lastMove = new Vector2(input.x, input.y);
+        }
+        Debug.Log(moveDelta);
 
         // Swap sprite direction, left right
         if (moveDelta.x > 0)
@@ -49,8 +58,8 @@ public abstract class Mover : Fighter
         );
         if (hit.collider == null)
         {
-        // Move sprite
-        transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
+            // Move sprite
+            transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
         }
 
         hit = Physics2D.BoxCast(
@@ -63,8 +72,8 @@ public abstract class Mover : Fighter
         );
         if (hit.collider == null)
         {
-        // Move sprite
-        transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
+            // Move sprite
+            transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
         }
     }
 }

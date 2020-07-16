@@ -32,10 +32,12 @@ public class Player : Mover
 
         if (isAlive)
         {
+            UpdateMotor(new Vector3(x, y, 0));
             anim.SetFloat("MoveX", x);
             anim.SetFloat("MoveY", y);
-
-            UpdateMotor(new Vector3(x, y, 0));
+            anim.SetBool("PlayerMoving", isMoving);
+            anim.SetFloat("LastMoveX", lastMove.x);
+            anim.SetFloat("LastMoveY", lastMove.y);
         }
     }
 
