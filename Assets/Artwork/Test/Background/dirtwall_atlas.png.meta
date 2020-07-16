@@ -44,6 +44,9 @@ TextureImporter:
   - first:
       213: -2216757524659554879
     second: dirtwall_13
+  - first:
+      213: 2359974205904168621
+    second: block_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -418,6 +421,27 @@ TextureImporter:
       bones: []
       spriteID: 1c53e75b6ce7c31e0800000000000000
       internalID: -2216757524659554879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: block_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da6a00e590050c020800000000000000
+      internalID: 2359974205904168621
       vertices: []
       indices: 
       edges: []

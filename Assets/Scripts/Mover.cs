@@ -29,7 +29,6 @@ public abstract class Mover : Fighter
             isMoving = true;
             lastMove = new Vector2(input.x, input.y);
         }
-        Debug.Log(moveDelta);
 
         // Swap sprite direction, left right
         if (moveDelta.x > 0)

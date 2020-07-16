@@ -144,9 +144,9 @@ public class GameManager : MonoBehaviour
     {
         string s = "";
         s += "0" + "|";
-        s += marks.ToString() + "|";
-        s += experience.ToString() + "|";
-        s += weapon.weaponLevel.ToString();
+        // s += marks.ToString() + "|";
+        // s += experience.ToString() + "|";
+        // s += weapon.weaponLevel.ToString();
 
         PlayerPrefs.SetString("SaveState", s);
     }
@@ -162,13 +162,13 @@ public class GameManager : MonoBehaviour
 
         string[] data = PlayerPrefs.GetString("SaveState").Split('|');
         
-        marks = int.Parse(data[1]);
-        experience = int.Parse(data[2]);
-        if (GetCurrentLevel() != 1)
-        {
-        player.SetLevel(GetCurrentLevel());
-        }
-        weapon.SetWeaponLevel(int.Parse(data[3]));
+        // marks = int.Parse(data[1]);
+        // experience = int.Parse(data[2]);
+        // if (GetCurrentLevel() != 1)
+        // {
+        // player.SetLevel(GetCurrentLevel());
+        // }
+        // weapon.SetWeaponLevel(int.Parse(data[3]));
 
         player.transform.position = GameObject.Find("SpawnPoint").transform.position;
     }
