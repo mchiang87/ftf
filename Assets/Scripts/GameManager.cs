@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public Weapon weapon;
     public FloatingTextManager floatingTextManager;
-    public RectTransform hitPointBar;
+    // public RectTransform hitPointBar;
     public Animator deathMenuAnim;
     public GameObject hud;
     public GameObject menu;
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     public void OnHitPointChange()
     {
         float ratio = (float)player.hitPoint / (float)player.maxHitPoint;
-        hitPointBar.localScale = new Vector3(1, ratio, 1);
+        // hitPointBar.localScale = new Vector3(1, ratio, 1);
     }
 
     // Leveling System
