@@ -35,8 +35,8 @@ public class Enemy : Mover
         startingPosition = transform.position;
         hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-        timeBetweenMoveCounter = timeBetweenMove;
-        timeToMoveCounter = timeToMove;
+        timeBetweenMoveCounter = Random.Range(timeBetweenMove * 0.75f, timeBetweenMove * 1.25f);
+        timeToMoveCounter = Random.Range(timeToMove * 0.75f, timeToMove * 1.25f);
     }
 
     private void FixedUpdate()
@@ -70,14 +70,14 @@ public class Enemy : Mover
                 {
                     moving = false;
                     anim.SetBool("EnemyMoving", false);
-                    timeBetweenMoveCounter = timeBetweenMove;
+                    timeBetweenMoveCounter = Random.Range(timeBetweenMove * 0.75f, timeBetweenMove * 1.25f);
                 }
             } else {
                 timeBetweenMoveCounter -= Time.deltaTime;
                 if (timeBetweenMoveCounter < 0f)
                 {
                     moving = true;
-                    timeToMoveCounter = timeToMove;
+                    timeToMoveCounter = Random.Range(timeToMove * 0.75f, timeToMove * 1.25f);
                     moveDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
                 }
             }

@@ -14,10 +14,27 @@ public class CharacterMenu : MonoBehaviour
 
     // Logic 
     private int currentCharacterSelection = 0;
+    private Animator anim;
+    private bool showMenu;
     public Image characterSelectionSprite,
         weaponSprite;
 
     public RectTransform expBar;
+
+    public void Start()
+    {
+        anim = GetComponent<Animator>();
+        showMenu = false;
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {   
+            showMenu = !showMenu;
+            anim.SetBool("ShowMenu", showMenu);
+        }
+    }
 
     // Character Selection
     public void OnArrowClick(bool right)

@@ -11,7 +11,6 @@ public class Fighter : MonoBehaviour
 
     protected float immuneTime = 1.0f;
     protected float lastImmune;
-
     protected Vector3 pushDirection;
 
     // All fighters can receive damage and die

@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: c49b282676c244241a4040c4ddd0b754
+guid: 5336526d97ab3fb40a562e06a678f037
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7890616393299973610
-    second: s_player_attack_up_strip4_0
+      213: 4018074224661003100
+    second: weapon_0
   - first:
-      213: 4344079996363359345
-    second: s_player_attack_up_strip4_1
-  - first:
-      213: 7595418529569872449
-    second: s_player_attack_up_strip4_2
-  - first:
-      213: -1649613021518491492
-    second: s_player_attack_up_strip4_3
+      213: -4869357254534750094
+    second: empty_weapon_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -99,34 +93,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: s_player_attack_up_strip4_0
+      name: weapon_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 3
-        width: 40
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 228
+        y: 225
+        width: 10
+        height: 29
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae5d48dadc9118d60800000000000000
-      internalID: 7890616393299973610
+      spriteID: c5b721af73113c730800000000000000
+      internalID: 4018074224661003100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: s_player_attack_up_strip4_1
+      name: empty_weapon_1
       rect:
         serializedVersion: 2
-        x: 49
-        y: 3
-        width: 40
-        height: 40
+        x: 84
+        y: 0
+        width: 10
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,50 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1744e13adb5494c30800000000000000
-      internalID: 4344079996363359345
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: s_player_attack_up_strip4_2
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 3
-        width: 40
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14a9e6f09e8586960800000000000000
-      internalID: 7595418529569872449
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: s_player_attack_up_strip4_3
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 3
-        width: 40
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c90188b62b56b19e0800000000000000
-      internalID: -1649613021518491492
+      spriteID: 2702cfe30619c6cb0800000000000000
+      internalID: -4869357254534750094
       vertices: []
       indices: 
       edges: []

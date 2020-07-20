@@ -6,6 +6,8 @@ public class Player : Mover
 {
     private SpriteRenderer spriteRenderer;
     private bool isAlive = true;
+    private float lastAttack;
+    private float cooldown = 0.1f;
     private Animator anim;
 
     protected override void Start()
@@ -38,6 +40,15 @@ public class Player : Mover
             anim.SetBool("PlayerMoving", isMoving);
             anim.SetFloat("LastMoveX", lastMove.x);
             anim.SetFloat("LastMoveY", lastMove.y);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (Time.time - lastAttack > cooldown)
+                {
+                    lastAttack = Time.time;
+                    Attack();
+                }
+            }
         }
     }
 
@@ -58,6 +69,11 @@ public class Player : Mover
         {
             OnLevelUp();
         }
+    }
+
+    public void Attack()
+    {
+        anim.SetTrigger("Attack");
     }
 
     public void Heal (int healingAmount)

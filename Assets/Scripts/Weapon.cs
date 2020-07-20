@@ -10,12 +10,8 @@ public class Weapon : Collidable
 
     // Upgrade
     public int weaponLevel = 0;
-    private SpriteRenderer spriteRenderer;
 
-    // Swing
-    private Animator animator;
-    private float cooldown = 0.5f;
-    private float lastSwing;
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
@@ -25,21 +21,11 @@ public class Weapon : Collidable
     protected override void Start()
     {
         base.Start();
-        animator = GetComponent<Animator>();
     }
 
     protected override void Update()
     {
         base.Update();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (Time.time - lastSwing > cooldown)
-            {
-                lastSwing = Time.time;
-                Swing();
-            }
-        }
     }
 
     protected override void OnCollide(Collider2D coll)
@@ -60,11 +46,6 @@ public class Weapon : Collidable
 
             coll.SendMessage("ReceiveDamage", dmg);
         }
-    }
-
-    private void Swing()
-    {
-        animator.SetTrigger("Swing");
     }
 
     public void Upgrade()
