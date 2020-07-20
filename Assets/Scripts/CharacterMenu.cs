@@ -33,9 +33,7 @@ public class CharacterMenu : MonoBehaviour
             }
 
             OnSelectionChange();
-        }
-        else
-        {
+        } else {
             currentCharacterSelection--;
 
             // If out of bounds
@@ -71,9 +69,7 @@ public class CharacterMenu : MonoBehaviour
         if (GameManager.instance.weapon.weaponLevel == GameManager.instance.weaponPrices.Count) 
         {
         upgradeCostText.text = "FULLY UPGRADED";
-        }
-        else
-        {
+        } else {
             upgradeCostText.text = GameManager.instance.weaponPrices[GameManager.instance.weapon.weaponLevel].ToString();
         }
 
@@ -88,9 +84,7 @@ public class CharacterMenu : MonoBehaviour
         {
             expText.text = GameManager.instance.experience.ToString() + " total experience points";
             expBar.localScale = Vector3.one;
-        }
-        else
-        {
+        } else {
             int prevLevelExp = GameManager.instance.GetExpToLevel(curLevel - 1);
             int curLevelExp = GameManager.instance.GetExpToLevel(curLevel);
 

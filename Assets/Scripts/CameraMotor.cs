@@ -23,9 +23,7 @@ public class CameraMotor : MonoBehaviour
             if (transform.position.x < lookAt.position.x)
             {
                 delta.x = deltaX - boundX;
-            }
-            else
-            {
+            } else {
                 delta.x = deltaX + boundX;
             }
         }
@@ -37,9 +35,7 @@ public class CameraMotor : MonoBehaviour
             if (transform.position.y < lookAt.position.y)
             {
                 delta.y = deltaY - boundY;
-            }
-            else
-            {
+            } else {
                 delta.y = deltaY + boundY;
             }
         }

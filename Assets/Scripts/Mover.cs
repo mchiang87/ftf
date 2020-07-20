@@ -34,9 +34,7 @@ public abstract class Mover : Fighter
         if (moveDelta.x > 0)
         {
             transform.localScale = originalSize;
-        }
-        else if (moveDelta.x < 0)
-        {
+        } else if (moveDelta.x < 0) {
             transform.localScale = new Vector3(originalSize.x * -1, originalSize.y, originalSize.z);
         }
 
