@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterMenu : MonoBehaviour
-{
+public class CharacterMenu : MonoBehaviour {
     // Textfields
     public Text levelText,
         hitPointText,
@@ -21,31 +20,25 @@ public class CharacterMenu : MonoBehaviour
 
     public RectTransform expBar;
 
-    public void Start()
-    {
+    public void Start() {
         anim = GetComponent<Animator>();
         showMenu = false;
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {   
+    public void Update() {
+        if (Input.GetKeyDown(KeyCode.Tab)) {   
             showMenu = !showMenu;
             anim.SetBool("ShowMenu", showMenu);
         }
     }
 
     // Character Selection
-    public void OnArrowClick(bool right)
-    {
-        if (right)
-        {
+    public void OnArrowClick(bool right) {
+        if (right) {
             currentCharacterSelection++;
 
             // If out of bounds
-            if (currentCharacterSelection == GameManager.instance.playerSprites.Count)
-            {
+            if (currentCharacterSelection == GameManager.instance.playerSprites.Count) {
                 currentCharacterSelection = 0;
             }
 
@@ -54,8 +47,7 @@ public class CharacterMenu : MonoBehaviour
             currentCharacterSelection--;
 
             // If out of bounds
-            if (currentCharacterSelection < 0)
-            {
+            if (currentCharacterSelection < 0) {
                 currentCharacterSelection = GameManager.instance.playerSprites.Count - 1;
             }
 
@@ -63,15 +55,13 @@ public class CharacterMenu : MonoBehaviour
         }
     }
 
-    private void OnSelectionChange()
-    {
+    private void OnSelectionChange() {
         characterSelectionSprite.sprite = GameManager.instance.playerSprites[currentCharacterSelection];
         GameManager.instance.player.SwapSprite(currentCharacterSelection);
     }
 
     // Weapon Upgrade
-    public void OnUpgradeClick()
-    {
+    public void OnUpgradeClick() {
         if (GameManager.instance.UpgradeWeapon())
         {
             UpdateMenu();
@@ -79,12 +69,10 @@ public class CharacterMenu : MonoBehaviour
     }
 
     // Text Updates
-    public void UpdateMenu()
-    {
+    public void UpdateMenu() {
         // Weapon
         weaponSprite.sprite = GameManager.instance.weaponSprites[GameManager.instance.weapon.weaponLevel];
-        if (GameManager.instance.weapon.weaponLevel == GameManager.instance.weaponPrices.Count) 
-        {
+        if (GameManager.instance.weapon.weaponLevel == GameManager.instance.weaponPrices.Count) {
         upgradeCostText.text = "FULLY UPGRADED";
         } else {
             upgradeCostText.text = GameManager.instance.weaponPrices[GameManager.instance.weapon.weaponLevel].ToString();
@@ -97,8 +85,7 @@ public class CharacterMenu : MonoBehaviour
 
         // Exp bar
         int curLevel = GameManager.instance.GetCurrentLevel();
-        if (curLevel == GameManager.instance.expTable.Count)
-        {
+        if (curLevel == GameManager.instance.expTable.Count) {
             expText.text = GameManager.instance.experience.ToString() + " total experience points";
             expBar.localScale = Vector3.one;
         } else {

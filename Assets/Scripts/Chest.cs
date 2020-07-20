@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : Collectible
-{
+public class Chest : Collectible {
     public Sprite emptyChest;
     public int markAmount = 10;
 
-    protected override void OnCollect()
-    {
-        if (!collected)
-        {
+    protected override void OnCollect() {
+        if (!collected) {
             collected = true;
             GameManager.instance.marks += markAmount;
             GetComponent<SpriteRenderer>().sprite = emptyChest;

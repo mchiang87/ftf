@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager instance;
-    private void Awake()
-    {
+    private void Awake() {
         // singleton here, TODO port load to preload scene later
-        if (GameManager.instance != null)
-        {
+        if (GameManager.instance != null) {
             Destroy(gameObject);
             Destroy(player.gameObject);
             Destroy(floatingTextManager.gameObject);
@@ -20,7 +17,11 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
+
+        // Loading from SaveState
         SceneManager.sceneLoaded += LoadState;
+
+        // Loading between scenes
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 
@@ -41,23 +42,22 @@ public class GameManager : MonoBehaviour
     // Logic
     public int marks;
     public int experience;
+    public string pointName;
+    public string startPoint;
+    public string currentScene;
 
-    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
-    {
+    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) {
         floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
     }
 
     // Upgrade Weapon
-    public bool UpgradeWeapon()
-    {
+    public bool UpgradeWeapon() {
         // Is weapon max level
-        if (weaponPrices.Count <= weapon.weaponLevel)
-        {
+        if (weaponPrices.Count <= weapon.weaponLevel) {
             return false;
         }
 
-        if (marks >= weaponPrices[weapon.weaponLevel])
-        {
+        if (marks >= weaponPrices[weapon.weaponLevel]) {
             marks -= weaponPrices[weapon.weaponLevel];
             weapon.Upgrade();
             return true;
@@ -66,69 +66,57 @@ public class GameManager : MonoBehaviour
     }
 
     // Health Bar
-    public void OnHitPointChange()
-    {
+    public void OnHitPointChange() {
         float ratio = (float)player.hitPoint / (float)player.maxHitPoint;
         // hitPointBar.localScale = new Vector3(1, ratio, 1);
     }
 
     // Leveling System
-    public int GetCurrentLevel()
-    {
+    public int GetCurrentLevel() {
         int level = 0;
         int add = 0;
         
-        while (experience >= add)
-        {
+        while (experience >= add) {
             add += expTable[level];
             level++;
 
-            if (level == expTable.Count)
-            {
+            if (level == expTable.Count) {
                 return level;
             }
         }
         return level;
     }
 
-    public int GetExpToLevel(int level)
-    {
+    public int GetExpToLevel(int level) {
         int r = 0;
         int exp = 0;
 
-        while (r < level)
-        {
+        while (r < level) {
             exp += expTable[r];
             r++;
         }
         return exp;
     }
 
-    public void GrantExp(int exp)
-    {
+    public void GrantExp(int exp) {
         int curLevel = GetCurrentLevel();
         experience += exp;
-        if (curLevel < GetCurrentLevel())
-        {
+        if (curLevel < GetCurrentLevel()) {
             OnLevelUp();
         }
     }
 
-    public void OnLevelUp()
-    {
+    public void OnLevelUp() {
         player.OnLevelUp();
         OnHitPointChange();
     }
 
-    // on Scene Load
-    public void OnSceneLoad(Scene scene, LoadSceneMode mode)
-    {
-        player.transform.position = GameObject.Find("SpawnPoint").transform.position;
+    public void OnSceneLoad(Scene scene, LoadSceneMode mode) {
+        player.transform.position = GameObject.Find(startPoint).transform.position;
     }
 
     // Death Menu and respawn
-    public void Respawn()
-    {
+    public void Respawn() {
         deathMenuAnim.SetTrigger("Hide");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
         player.Respawn();
@@ -140,8 +128,7 @@ public class GameManager : MonoBehaviour
     * INT experience
     * INT weaponLevel
     */
-    public void SaveState()
-    {
+    public void SaveState() {
         string s = "";
         s += "0" + "|";
         // s += marks.ToString() + "|";
@@ -151,12 +138,10 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("SaveState", s);
     }
 
-    public void LoadState(Scene scene, LoadSceneMode mode)
-    {
+    public void LoadState(Scene scene, LoadSceneMode mode) {
         SceneManager.sceneLoaded -= LoadState;
 
-        if (!PlayerPrefs.HasKey("SaveState"))
-        {
+        if (!PlayerPrefs.HasKey("SaveState")) {
             return;
         }
 
@@ -170,6 +155,6 @@ public class GameManager : MonoBehaviour
         // }
         // weapon.SetWeaponLevel(int.Parse(data[3]));
 
-        player.transform.position = GameObject.Find("SpawnPoint").transform.position;
+        player.transform.position = GameObject.Find(startPoint).transform.position;
     }
 }

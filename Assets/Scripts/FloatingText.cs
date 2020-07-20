@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FloatingText
-{
+public class FloatingText {
     public bool active;
     public GameObject go;
     public Text txt;
@@ -12,28 +11,23 @@ public class FloatingText
     public float duration;
     public float lastShown;
 
-    public void Show()
-    {
+    public void Show() {
         active = true;
         lastShown = Time.time;
         go.SetActive(active);
     }
 
-    public void Hide()
-    {
+    public void Hide() {
         active = false;
         go.SetActive(active);
     }
 
-    public void UpdateFloatingText()
-    {
-        if (!active)
-        {
+    public void UpdateFloatingText() {
+        if (!active) {
             return;
         }
 
-        if (Time.time - lastShown > duration)
-        {
+        if (Time.time - lastShown > duration) {
             Hide();
         }
 

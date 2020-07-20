@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Mover
-{
+public class Enemy : Mover {
     // Experience
     public int expValue = 1;
 
@@ -28,8 +27,7 @@ public class Enemy : Mover
     private BoxCollider2D hitbox;
     private Collider2D[] hits = new Collider2D[10];
 
-    protected override void Start()
-    {
+    protected override void Start() {
         base.Start();
         playerTransform = GameManager.instance.player.transform;
         startingPosition = transform.position;
@@ -39,20 +37,16 @@ public class Enemy : Mover
         timeToMoveCounter = Random.Range(timeToMove * 0.75f, timeToMove * 1.25f);
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         // Is player in range
-        if (Vector3.Distance(playerTransform.position, startingPosition) < chaseLength)
-        {
-            if (Vector3.Distance(playerTransform.position, startingPosition) < triggerLength)
-            {
+        if (Vector3.Distance(playerTransform.position, startingPosition) < chaseLength) {
+            if (Vector3.Distance(playerTransform.position, startingPosition) < triggerLength) {
                 chasing = true;
                 anim.SetBool("EnemyMoving", true);
             }
-            if (chasing)
-            {
-                if (!collidingWithPlayer)
-                {
+
+            if (chasing) {
+                if (!collidingWithPlayer) {
                     UpdateMotor((playerTransform.position - transform.position).normalized);
                 }
             } else {
@@ -60,22 +54,19 @@ public class Enemy : Mover
             }
         } else {
             chasing = false;
-            if (moving)
-            {
+            if (moving) {
                 anim.SetBool("EnemyMoving", true);
                 timeToMoveCounter -= Time.deltaTime;
                 UpdateMotor(moveDirection);
 
-                if (timeToMoveCounter < 0)
-                {
+                if (timeToMoveCounter < 0) {
                     moving = false;
                     anim.SetBool("EnemyMoving", false);
                     timeBetweenMoveCounter = Random.Range(timeBetweenMove * 0.75f, timeBetweenMove * 1.25f);
                 }
             } else {
                 timeBetweenMoveCounter -= Time.deltaTime;
-                if (timeBetweenMoveCounter < 0f)
-                {
+                if (timeBetweenMoveCounter < 0f) {
                     moving = true;
                     timeToMoveCounter = Random.Range(timeToMove * 0.75f, timeToMove * 1.25f);
                     moveDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
@@ -88,20 +79,16 @@ public class Enemy : Mover
         collidingWithEnvironment = false;
         boxCollider.OverlapCollider(filter, hits);
 
-        for (int i = 0; i < hits.Length; i++)
-        {
-            if (hits[i] == null)
-            {
+        for (int i = 0; i < hits.Length; i++) {
+            if (hits[i] == null) {
                 continue;
             }
 
-            if (hits[i].tag == "Fighter" && hits[i].name == "Player")
-            {
+            if (hits[i].tag == "Fighter" && hits[i].name == "Player") {
                 collidingWithPlayer = true;
             }
 
-            if (hits[i].name == "Wall")
-            {
+            if (hits[i].name == "Wall") {
                 collidingWithEnvironment = true;
             }
 
@@ -110,8 +97,7 @@ public class Enemy : Mover
         }
     }
 
-    protected override void Death()
-    {
+    protected override void Death() {
         Destroy(gameObject);
         GameManager.instance.GrantExp(expValue);
         GameManager.instance.ShowText("+" + expValue + " exp", 30, Color.magenta, transform.position, Vector3.up * 40, 1.0f);
