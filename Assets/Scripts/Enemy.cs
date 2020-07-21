@@ -85,6 +85,7 @@ public class Enemy : Mover {
             }
 
             if (hits[i].tag == "Fighter" && hits[i].name == "Player") {
+                anim.SetTrigger("EnemyAttack");
                 collidingWithPlayer = true;
             }
 
@@ -98,7 +99,7 @@ public class Enemy : Mover {
     }
 
     protected override void Death() {
-        Destroy(gameObject);
+        anim.SetTrigger("EnemyDeath");
         GameManager.instance.GrantExp(expValue);
         GameManager.instance.ShowText("+" + expValue + " exp", 30, Color.magenta, transform.position, Vector3.up * 40, 1.0f);
     }

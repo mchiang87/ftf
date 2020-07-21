@@ -157,4 +157,8 @@ public class GameManager : MonoBehaviour {
 
         player.transform.position = GameObject.Find(startPoint).transform.position;
     }
+
+    public void ReceiveItem(Item item) {
+        Debug.Log("Placeholder to receive item");
+    }
 }
