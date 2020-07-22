@@ -9,16 +9,16 @@ public class Enemy : Mover {
     // Logic
     public float triggerLength = 0.25f;
     public float chaseLength = 1;
-    public float timeToMove;
-    public float timeBetweenMove;
-    private float timeBetweenMoveCounter;
-    private float timeToMoveCounter;
+    public float moveTime;
+    public float waitTime;
+    private float waitTimeCounter;
+    private float moveTimeCounter;
     private bool moving;
     private bool chasing;
     private bool collidingWithPlayer;
     private bool collidingWithEnvironment;
     private Transform playerTransform;
-    private Vector3 startingPosition;
+    private Vector3 currentPosition;
     private Vector3 moveDirection;
     private Animator anim;
 
@@ -30,45 +30,45 @@ public class Enemy : Mover {
     protected override void Start() {
         base.Start();
         playerTransform = GameManager.instance.player.transform;
-        startingPosition = transform.position;
         hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-        timeBetweenMoveCounter = Random.Range(timeBetweenMove * 0.75f, timeBetweenMove * 1.25f);
-        timeToMoveCounter = Random.Range(timeToMove * 0.75f, timeToMove * 1.25f);
+        waitTimeCounter = Random.Range(waitTime * 0.75f, waitTime * 1.25f);
+        moveTimeCounter = Random.Range(moveTime * 0.75f, moveTime * 1.25f);
+        moving = false;
     }
 
     private void FixedUpdate() {
-        // Is player in range
-        if (Vector3.Distance(playerTransform.position, startingPosition) < chaseLength) {
-            if (Vector3.Distance(playerTransform.position, startingPosition) < triggerLength) {
-                chasing = true;
-                anim.SetBool("EnemyMoving", true);
-            }
+        currentPosition = transform.position;
+        if (moving) {
+            chasing = false;
+            anim.SetBool("EnemyMoving", true);
+            moveTimeCounter -= Time.deltaTime;
+            UpdateMotor(moveDirection);
 
-            if (chasing) {
-                if (!collidingWithPlayer) {
-                    UpdateMotor((playerTransform.position - transform.position).normalized);
-                }
-            } else {
-                UpdateMotor(startingPosition - transform.position);
+            if (moveTimeCounter < 0f) {
+                moving = false;
+                anim.SetBool("EnemyMoving", false);
+                waitTimeCounter = Random.Range(waitTime * 0.75f, waitTime * 1.25f);
             }
         } else {
-            chasing = false;
-            if (moving) {
-                anim.SetBool("EnemyMoving", true);
-                timeToMoveCounter -= Time.deltaTime;
-                UpdateMotor(moveDirection);
-
-                if (timeToMoveCounter < 0) {
+            if (Vector3.Distance(playerTransform.position, currentPosition) < chaseLength) {
+                if (Vector3.Distance(playerTransform.position, currentPosition) < triggerLength) {
+                    chasing = true;
                     moving = false;
-                    anim.SetBool("EnemyMoving", false);
-                    timeBetweenMoveCounter = Random.Range(timeBetweenMove * 0.75f, timeBetweenMove * 1.25f);
+                    anim.SetBool("EnemyMoving", true);
+                }
+                if (chasing) {
+                    if (!collidingWithPlayer) {
+                        UpdateMotor((playerTransform.position - currentPosition).normalized);
+                        moveTimeCounter = Random.Range(moveTime * 0.75f, moveTime * 1.25f);
+                    }
                 }
             } else {
-                timeBetweenMoveCounter -= Time.deltaTime;
-                if (timeBetweenMoveCounter < 0f) {
+                chasing = false;
+                waitTimeCounter -= Time.deltaTime;
+                if (waitTimeCounter < 0f) {
                     moving = true;
-                    timeToMoveCounter = Random.Range(timeToMove * 0.75f, timeToMove * 1.25f);
+                    moveTimeCounter = Random.Range(moveTime * 0.75f, moveTime * 1.25f);
                     moveDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
                 }
             }

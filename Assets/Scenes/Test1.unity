@@ -319,7 +319,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6175c6161e52945afeef7a8eb10cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interacted: {fileID: 6684007397845178595, guid: de9a6b9a7b3f26a4eb71cf461492bff4,
+  filter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  afterInteract: {fileID: 6684007397845178595, guid: de9a6b9a7b3f26a4eb71cf461492bff4,
     type: 3}
   itemID: 0
 --- !u!1 &647858150
