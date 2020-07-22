@@ -14,6 +14,11 @@ public class DialogueManager : MonoBehaviour {
     public int currentLine;
     private float coolDown;
 
+    private Player player;
+
+    public void Start() {
+        player = FindObjectOfType<Player>();
+    }
     public void Update() {
         coolDown -= Time.deltaTime;
         if (dialogueActive && Input.GetKeyDown(KeyCode.Return)) {
@@ -32,11 +37,13 @@ public class DialogueManager : MonoBehaviour {
         if (coolDown <= 0) {
             dialogueActive = true;
             dialogueBox.SetActive(true);
+            player.canMove = false;
         }
     }
 
     public void HideBox() {
         dialogueActive = false;
         dialogueBox.SetActive(false);
+        player.canMove = true;
     }
 }

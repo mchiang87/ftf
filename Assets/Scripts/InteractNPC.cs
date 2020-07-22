@@ -34,5 +34,6 @@ public class InteractNPC : Interactable {
                 dialogueManager.ShowDialogue();
             }
         }
+        transform.GetComponent<NPC>().canMove = false;
     }
 }

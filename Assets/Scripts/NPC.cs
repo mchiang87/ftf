@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPC : Mover {
     
     public bool moving;
+    public bool canMove;
     public float moveTime;
     public float waitTime;
     public BoxCollider2D walkArea;
@@ -16,10 +17,13 @@ public class NPC : Mover {
     private int randomDirection;
     private Vector3 moveDirection;
     private bool hasWalkArea;
+    private DialogueManager dialogueManager;
     
     protected override void Start() {
         base.Start();
+        canMove = true;
         boxCollider = GetComponent<BoxCollider2D>();
+        dialogueManager = FindObjectOfType<DialogueManager>();
         waitTimeCounter = waitTime;
         moveTimeCounter = moveTime;
         
@@ -32,6 +36,14 @@ public class NPC : Mover {
 
     // Update is called once per frame
     private void FixedUpdate() {
+        if (!dialogueManager.dialogueActive) {
+            canMove = true;
+        }
+        
+        if (!canMove) {
+            moveDirection = Vector3.zero;
+            return;
+        }
         if (moving) {
             // anim.SetBool("Moving", true);
             moveTimeCounter -= Time.deltaTime;

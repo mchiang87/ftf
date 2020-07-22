@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : Mover {
     private SpriteRenderer spriteRenderer;
     private bool isAlive = true;
+    public bool canMove;
     private float lastAttack;
     private float cooldown = 0.1f;
     private Animator anim;
@@ -13,6 +14,7 @@ public class Player : Mover {
         base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        canMove = true;
     }
 
     protected override void ReceiveDamage(Damage dmg) {
@@ -27,7 +29,7 @@ public class Player : Mover {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        if (isAlive) {
+        if (isAlive && canMove) {
             UpdateMotor(new Vector3(x, y, 0));
             anim.SetFloat("MoveX", x);
             anim.SetFloat("MoveY", y);
@@ -41,6 +43,9 @@ public class Player : Mover {
                     Attack();
                 }
             }
+        }
+        if (!canMove) {
+            anim.SetBool("PlayerMoving", false);
         }
     }
 
