@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GetItem : Interactable {
+public class InteractItem : Interactable {
 
     private DialogueManager dialogueManager;
     private bool interacted = false;

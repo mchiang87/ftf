@@ -38,7 +38,6 @@ public abstract class Mover : Fighter {
 
         // Reduce pushforce by frame, based off of recovery speed
         pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
-
         // Check that we can move in the direction by casting a box, if box is null, move
         hit = Physics2D.BoxCast(
             transform.position,

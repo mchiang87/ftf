@@ -12,8 +12,10 @@ public class DialogueManager : MonoBehaviour {
 
     public string[] dialogueLines = new string[] {""};
     public int currentLine;
+    private float coolDown;
 
     public void Update() {
+        coolDown -= Time.deltaTime;
         if (dialogueActive && Input.GetKeyDown(KeyCode.Return)) {
             currentLine++;
         }
@@ -21,14 +23,16 @@ public class DialogueManager : MonoBehaviour {
         if (currentLine >= dialogueLines.Length) {
             HideBox();
             currentLine = 0;
+            coolDown = 1;
         }
-
         dialogueText.text = dialogueLines[currentLine];
     }
 
     public void ShowDialogue() {
-        dialogueActive = true;
-        dialogueBox.SetActive(true);
+        if (coolDown <= 0) {
+            dialogueActive = true;
+            dialogueBox.SetActive(true);
+        }
     }
 
     public void HideBox() {
