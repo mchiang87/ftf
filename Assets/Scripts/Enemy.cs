@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : Mover {
     // Experience
     public int expValue = 1;
+    public GameObject drop;
 
     // Logic
     public float triggerLength = 0.25f;
@@ -100,6 +101,7 @@ public class Enemy : Mover {
 
     protected override void Death() {
         anim.SetTrigger("EnemyDeath");
+        Instantiate(drop, currentPosition, Quaternion.identity);
         GameManager.instance.GrantExp(expValue);
         GameManager.instance.ShowText("+" + expValue + " exp", 30, Color.magenta, transform.position, Vector3.up * 40, 1.0f);
     }

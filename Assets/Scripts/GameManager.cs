@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour {
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 
+    public List<Item> inventory = new List<Item>();
+    public ItemDatabase itemDatabase;
+
     // Resources
     public List<Sprite> playerSprites;
     public List<Sprite> weaponSprites;
@@ -158,7 +161,10 @@ public class GameManager : MonoBehaviour {
         player.transform.position = GameObject.Find(startPoint).transform.position;
     }
 
-    public void ReceiveItem(Item item) {
-        Debug.Log("Placeholder to receive item");
+    public string ReceiveItem(int id) {
+        Item itemToAdd = itemDatabase.GetItem(id);
+        inventory.Add(itemToAdd);
+        Debug.Log("added" + itemToAdd.itemName);
+        return itemToAdd.description;
     }
 }
