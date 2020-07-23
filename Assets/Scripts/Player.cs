@@ -30,19 +30,30 @@ public class Player : Mover {
         float y = Input.GetAxisRaw("Vertical");
 
         if (isAlive && canMove) {
-            UpdateMotor(new Vector3(x, y, 0));
+            Walk(new Vector3(x, y, 0));
             anim.SetFloat("MoveX", x);
             anim.SetFloat("MoveY", y);
             anim.SetBool("PlayerMoving", isMoving);
             anim.SetFloat("LastMoveX", lastMove.x);
             anim.SetFloat("LastMoveY", lastMove.y);
 
+            // Attack
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (Time.time - lastAttack > cooldown) {
                     lastAttack = Time.time;
                     Attack();
                 }
             }
+
+            // Dash
+            if (Input.GetKeyDown(KeyCode.RightShift)) {
+                Blink(new Vector3(x, y, 0));
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift)) {
+                Dash(new Vector3(x, y, 0));
+            }
+
         }
         if (!canMove) {
             anim.SetBool("PlayerMoving", false);

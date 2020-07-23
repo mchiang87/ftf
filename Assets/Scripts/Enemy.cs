@@ -44,7 +44,7 @@ public class Enemy : Mover {
             chasing = false;
             anim.SetBool("EnemyMoving", true);
             moveTimeCounter -= Time.deltaTime;
-            UpdateMotor(moveDirection);
+            Walk(moveDirection);
 
             if (moveTimeCounter < 0f) {
                 moving = false;
@@ -60,7 +60,7 @@ public class Enemy : Mover {
                 }
                 if (chasing) {
                     if (!collidingWithPlayer) {
-                        UpdateMotor((playerTransform.position - currentPosition).normalized);
+                        Walk((playerTransform.position - currentPosition).normalized);
                         moveTimeCounter = Random.Range(moveTime * 0.75f, moveTime * 1.25f);
                     }
                 }

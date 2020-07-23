@@ -4,20 +4,39 @@ using UnityEngine;
 
 public abstract class Mover : Fighter {
     private Vector3 originalSize;
+    private float dashTime;
     protected BoxCollider2D boxCollider;
     protected Vector3 moveDelta;
     protected RaycastHit2D hit;
     protected bool isMoving;
     protected Vector2 lastMove;
-    public float ySpeed = 0.75f;
-    public float xSpeed = 1.0f;
+    public float yWalkSpeed = 0.75f;
+    public float xWalkSpeed = 1.0f;
+    public float dashSpeed = 4.5f;
+    public float xBlinkSpeed = 11.25f;
+    public float yBlinkSpeed = 15.0f;
+
+
 
     protected virtual void Start() {
         originalSize = transform.localScale;
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    protected virtual void UpdateMotor(Vector3 input) {
+    protected virtual void Walk(Vector3 input) {
+        UpdateMotor(input, xWalkSpeed, yWalkSpeed);
+    }
+
+    protected virtual void Blink(Vector3 input) {
+        UpdateMotor(input, xBlinkSpeed, yBlinkSpeed);
+    }
+
+    protected virtual void Dash(Vector3 input) {
+        pushDirection = input.normalized * dashSpeed;
+        UpdateMotor(input, xWalkSpeed, yWalkSpeed);
+    }
+
+    protected virtual void UpdateMotor(Vector3 input, float xSpeed, float ySpeed) {
         isMoving = false;
         // Reset MoveDelta
         moveDelta = new Vector3(input.x * xSpeed, input.y * ySpeed, 0);
@@ -32,13 +51,16 @@ public abstract class Mover : Fighter {
         } else if (moveDelta.x < 0) {
             transform.localScale = new Vector3(originalSize.x * -1, originalSize.y, originalSize.z);
         }
-
         // Add push vector
         moveDelta += pushDirection;
 
         // Reduce pushforce by frame, based off of recovery speed
         pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
         // Check that we can move in the direction by casting a box, if box is null, move
+        Move(moveDelta);
+    }
+
+    private void Move(Vector3 moveDelta) {
         hit = Physics2D.BoxCast(
             transform.position,
             boxCollider.size,

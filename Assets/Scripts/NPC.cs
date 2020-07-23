@@ -47,7 +47,7 @@ public class NPC : Mover {
         if (moving) {
             // anim.SetBool("Moving", true);
             moveTimeCounter -= Time.deltaTime;
-            UpdateMotor(moveDirection);
+            Walk(moveDirection);
 
             if (moveTimeCounter < 0f) {
                 moving = false;
