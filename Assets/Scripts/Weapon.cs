@@ -30,12 +30,7 @@ public class Weapon : Collidable {
                 return;
             }
 
-            Damage dmg = new Damage {
-                damageAmount = damagePoint[weaponLevel],
-                origin = transform.position,
-                pushForce = pushForce[weaponLevel],
-            };
-
+            Damage dmg = new Damage (transform.position,  damagePoint[weaponLevel], pushForce[weaponLevel]);
             coll.SendMessage("ReceiveDamage", dmg);
         }
     }

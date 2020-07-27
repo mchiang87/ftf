@@ -36,7 +36,7 @@ public abstract class Mover : Fighter {
         UpdateMotor(input, xWalkSpeed, yWalkSpeed);
     }
 
-    protected virtual void UpdateMotor(Vector3 input, float xSpeed, float ySpeed) {
+    private void UpdateMotor(Vector3 input, float xSpeed, float ySpeed) {
         isMoving = false;
         // Reset MoveDelta
         moveDelta = new Vector3(input.x * xSpeed, input.y * ySpeed, 0);
