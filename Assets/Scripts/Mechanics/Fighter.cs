@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fighter : MonoBehaviour {
+public class Fighter : Mover {
     // Public fields
     public int hitPoint = 10;
     public int maxHitPoint = 10;
-    public float pushRecoverySpeed = 0.2f;
-
     protected float immuneTime = 1.0f;
     protected float lastImmune;
-    protected Vector3 pushDirection;
 
     // All fighters can receive damage and die
     protected virtual void ReceiveDamage(Damage dmg) {

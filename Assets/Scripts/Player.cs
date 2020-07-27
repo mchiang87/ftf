@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Mover {
+public class Player : Fighter {
     private SpriteRenderer spriteRenderer;
     private bool isAlive = true;
     public bool canMove;

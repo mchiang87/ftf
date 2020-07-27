@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Mover : Fighter {
+public abstract class Mover : MonoBehaviour {
     private Vector3 originalSize;
     private float dashTime;
     protected BoxCollider2D boxCollider;
@@ -10,6 +10,8 @@ public abstract class Mover : Fighter {
     protected RaycastHit2D hit;
     protected bool isMoving;
     protected Vector2 lastMove;
+    protected Vector3 pushDirection;
+    public float pushRecoverySpeed = 0.2f;
     public float yWalkSpeed = 0.75f;
     public float xWalkSpeed = 1.0f;
     public float dashSpeed = 4.5f;

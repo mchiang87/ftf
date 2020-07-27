@@ -9,7 +9,7 @@ public class EnemyHitbox : Collidable {
     protected override void OnCollide(Collider2D coll) {
         if (coll.tag == "Fighter" && coll.name == "Player") {
             // Create a new damage object
-            Damage dmg = new Damage ( transform.position, damage, pushForce);
+            Damage dmg = new Damage(transform.position, damage, pushForce);
 
             coll.SendMessage("ReceiveDamage", dmg);
         }
