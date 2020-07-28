@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +27,8 @@ public class CharacterMenu : MonoBehaviour {
     }
 
     public void Update() {
-        if (Input.GetKeyDown(KeyCode.Tab)) {   
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            Time.timeScale = Convert.ToSingle(showMenu);
             showMenu = !showMenu;
             anim.SetBool("ShowMenu", showMenu);
         }
