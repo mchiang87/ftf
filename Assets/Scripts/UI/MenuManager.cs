@@ -4,13 +4,14 @@ using System.Linq;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour {
-  private int menuTabIndex = 0;
-  private int menuItemIndex = 0;
+  public int menuTabIndex;
+  public int menuItemIndex;
   private List<string> menuTabs; // Change from string to menu class?
   private List<List<string>> menuItems; // Change from string to menu class?
   private int menuTabCount;
   private int menuItemCount;
-  private Animator anim;
+  public Vector3 originalSelectPos;
+  public Animator anim;
   public CharacterMenu characterMenu; // remove once merge this file with charactermenu file
   public GameObject selector;
   public float yOffset;
@@ -58,11 +59,11 @@ public class MenuManager : MonoBehaviour {
       menuTabCount = menuTabs.Count;
       menuItemCount = menuItems.Count;
       anim = GetComponent<Animator>();
+      originalSelectPos = new Vector3(selector.transform.position.x,selector.transform.position.y, 0f);
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
       // Menu updates
       // if (menuTabIndex = menuTabs[])
 
@@ -112,6 +113,11 @@ public class MenuManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
           // Select menu item and use for submenu if exist
         }
+      } else {
+        menuTabIndex = 0;
+        menuItemIndex = 0;
+        selector.transform.position = originalSelectPos;
+        anim.Play("menu_party");
       }
     }
 }
