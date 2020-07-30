@@ -15,7 +15,7 @@ public class CharacterMenu : MonoBehaviour {
     // Logic 
     private int currentCharacterSelection = 0;
     private Animator anim;
-    private bool showMenu;
+    public bool showMenu;
     public Image characterSelectionSprite,
         weaponSprite;
 
