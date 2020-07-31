@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
 
     // Resources
     public List<Sprite> playerSprites;
+    public List<Sprite> characterSprites;
     public List<Sprite> weaponSprites;
     public List<int> weaponPrices;
     public List<int> expTable;

@@ -6,12 +6,15 @@ public class Item {
     public int itemID;
     public string itemName;
     public string description;
-    // public Sprite sprite;
+    public int itemType;
+    // public Sprite thumbnail;
+    // public Sprite portrait;
 
-    public Item(int itemID, string itemName, string description) {
+    public Item(int itemID, string itemName, string description, int itemType) {
         this.itemID = itemID;
         this.itemName = itemName;
         this.description = description;
-        // this.icon = Resource.Load<Sprite>("Sprites/Items/" + itemName);
+        // this.thumbnail = Resource.Load<Sprite>("Sprites/Items/" + itemID);
+        // this.portrait = Resource.Load<Sprite>("Sprites/Items/" + itemID);
     }
 }
