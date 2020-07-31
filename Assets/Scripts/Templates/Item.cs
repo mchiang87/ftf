@@ -15,6 +15,6 @@ public class Item {
         this.itemName = itemName;
         this.description = description;
         // this.thumbnail = Resource.Load<Sprite>("Sprites/Items/" + itemID);
-        // this.portrait = Resource.Load<Sprite>("Sprites/Items/" + itemID);
+        // this.portrait = Resource.Load<Sprite>("Portraits/Items/" + itemID);
     }
 }

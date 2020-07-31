@@ -68,36 +68,29 @@ public class MenuManager : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
-    if (selector.transform.position.y != originalSelectPos.y) {
-      onMenuTab = false;
-    }
     // Menu updates
     // if (menuTabIndex = menuTabs[])
 
     // Menu Navigation
     if (characterMenu.showMenu) {
       if (Input.GetKeyDown(KeyCode.RightArrow)) {
-        if (onMenuTab) {
-          if (menuTabIndex < menuTabCount - 1) {
-            menuTabIndex++;
-            Vector3 position = selector.transform.position;
-            position.x += xOffset;
-            selector.transform.position = position;
-            anim.SetTrigger("ShowNext");
-          }
+        if (menuTabIndex < menuTabCount - 1) {
+          menuTabIndex++;
+          Vector3 position = selector.transform.position;
+          position.x += xOffset;
+          selector.transform.position = position;
+          anim.SetTrigger("ShowNext");
         }
       }
 
       // select left
       if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-        if (onMenuTab) {
-          if (menuTabIndex > 0) {
-            menuTabIndex--;
-            Vector3 position = selector.transform.position;
-            position.x -= xOffset;
-            selector.transform.position = position;
-            anim.SetTrigger("ShowPrevious");
-          }
+        if (menuTabIndex > 0) {
+          menuTabIndex--;
+          Vector3 position = selector.transform.position;
+          position.x -= xOffset;
+          selector.transform.position = position;
+          anim.SetTrigger("ShowPrevious");
         }
       }
 

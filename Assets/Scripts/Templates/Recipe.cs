@@ -15,6 +15,6 @@ public class Recipe {
         this.recipeName = recipeName;
         this.description = description;
         this.ingredients = ingredients;
-        // this.portrait = Resource.Load<Sprite>("Sprites/Items/" + itemID);
+        // this.portrait = Resource.Load<Sprite>("Portraits/Items/" + itemID);
     }
 }

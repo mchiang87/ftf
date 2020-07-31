@@ -13,6 +13,5 @@ public class Quest {
         this.description = description;
         this.objectives = objectives;
         this.rewardID = rewardID;
-        // this.icon = Resource.Load<Sprite>("Sprites/Items/" + rewardID);
     }
 }

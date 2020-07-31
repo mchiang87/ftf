@@ -15,6 +15,6 @@ public class Equip {
         this.itemID = itemID;
         // this.behavior = behavior;
         // this.thumbnail = Resource.Load<Sprite>("Sprites/Items/" + itemID);
-        // this.portrait = Resource.Load<Sprite>("Sprites/Items/" + itemID);
+        // this.portrait = Resource.Load<Sprite>("Portraits/Items/" + itemID);
     }
 }
