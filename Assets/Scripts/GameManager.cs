@@ -4,168 +4,179 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-    public static GameManager instance;
-    private void Awake() {
-        // singleton here, TODO port load to preload scene later
-        if (GameManager.instance != null) {
-            Destroy(gameObject);
-            Destroy(player.gameObject);
-            Destroy(floatingTextManager.gameObject);
-            Destroy(hud);
-            Destroy(menu);
-            return;
-        }
+  public static GameManager instance;
+  private InventoryListControl inventoryListControl;
+  public List<Item> inventory = new List<Item>();
+  public ItemDatabase itemDatabase;
 
-        instance = this;
+  // Resources
+  public List<Sprite> playerSprites;
+  public List<Sprite> characterSprites;
+  public List<Sprite> weaponSprites;
+  public List<int> weaponPrices;
+  public List<int> expTable;
 
-        // Loading from SaveState
-        SceneManager.sceneLoaded += LoadState;
+  // References
+  public Player player;
+  public Weapon weapon;
+  public FloatingTextManager floatingTextManager;
+  // public RectTransform hitPointBar;
+  public Animator deathMenuAnim;
+  public GameObject hud;
+  public GameObject menu;
+  // Logic
+  public int marks;
+  public int experience;
+  public string pointName;
+  public string startPoint;
+  public string currentScene;
 
-        // Loading between scenes
-        SceneManager.sceneLoaded += OnSceneLoad;
+  private void Awake() {
+    // singleton here, TODO port load to preload scene later
+    if (GameManager.instance != null) {
+        Destroy(gameObject);
+        Destroy(player.gameObject);
+        Destroy(floatingTextManager.gameObject);
+        Destroy(hud);
+        Destroy(menu);
+        return;
     }
 
-    public List<Item> inventory = new List<Item>();
-    public ItemDatabase itemDatabase;
+    instance = this;
 
-    // Resources
-    public List<Sprite> playerSprites;
-    public List<Sprite> characterSprites;
-    public List<Sprite> weaponSprites;
-    public List<int> weaponPrices;
-    public List<int> expTable;
+    // Loading from SaveState
+    SceneManager.sceneLoaded += LoadState;
 
-    // References
-    public Player player;
-    public Weapon weapon;
-    public FloatingTextManager floatingTextManager;
-    // public RectTransform hitPointBar;
-    public Animator deathMenuAnim;
-    public GameObject hud;
-    public GameObject menu;
-    // Logic
-    public int marks;
-    public int experience;
-    public string pointName;
-    public string startPoint;
-    public string currentScene;
+    // Loading between scenes
+    SceneManager.sceneLoaded += OnSceneLoad;
+  }
 
-    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) {
-        floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+#region Saving/Loading
+  public void OnSceneLoad(Scene scene, LoadSceneMode mode) {
+    player.transform.position = GameObject.Find(startPoint).transform.position;
+  }
+
+  public void SaveState() {
+    string s = "";
+    s += "0" + "|";
+    // s += marks.ToString() + "|";
+    // s += experience.ToString() + "|";
+    // s += weapon.weaponLevel.ToString();
+
+    PlayerPrefs.SetString("SaveState", s);
+  }
+
+  public void LoadState(Scene scene, LoadSceneMode mode) {
+    SceneManager.sceneLoaded -= LoadState;
+
+    if (!PlayerPrefs.HasKey("SaveState")) {
+        return;
     }
 
-    // Upgrade Weapon
-    public bool UpgradeWeapon() {
-        // Is weapon max level
-        if (weaponPrices.Count <= weapon.weaponLevel) {
-            return false;
-        }
+    string[] data = PlayerPrefs.GetString("SaveState").Split('|');
+    
+    // marks = int.Parse(data[1]);
+    // experience = int.Parse(data[2]);
+    // if (GetCurrentLevel() != 1)
+    // {
+    // player.SetLevel(GetCurrentLevel());
+    // }
+    // weapon.SetWeaponLevel(int.Parse(data[3]));
 
-        if (marks >= weaponPrices[weapon.weaponLevel]) {
-            marks -= weaponPrices[weapon.weaponLevel];
-            weapon.Upgrade();
-            return true;
-        }
+    player.transform.position = GameObject.Find(startPoint).transform.position;
+  }
+#endregion
+
+#region Inventory
+  public string AddItemToInventory(int id) {
+    Item itemToAdd = itemDatabase.GetItem(id);
+    inventory.Add(itemToAdd);
+    Debug.Log("added" + itemToAdd.itemName);
+    return itemToAdd.description;
+  }
+
+  public void RemoveItemFromInventory(int id) {
+    Item itemToRemove = CheckForItem(id);
+    if (itemDatabase != null) {
+      inventory.Remove(itemToRemove);
+    }
+    Debug.Log("removed" + itemToRemove.itemName);
+  }
+
+  public Item CheckForItem(int id) {
+    return inventory.Find(item => item.itemID == id);
+  }
+#endregion
+
+  public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) {
+    floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+  }
+
+  // Upgrade Weapon
+  public bool UpgradeWeapon() {
+    // Is weapon max level
+    if (weaponPrices.Count <= weapon.weaponLevel) {
         return false;
     }
 
-    // Health Bar
-    public void OnHitPointChange() {
-        float ratio = (float)player.hitPoint / (float)player.maxHitPoint;
-        // hitPointBar.localScale = new Vector3(1, ratio, 1);
+    if (marks >= weaponPrices[weapon.weaponLevel]) {
+        marks -= weaponPrices[weapon.weaponLevel];
+        weapon.Upgrade();
+        return true;
     }
+    return false;
+  }
 
-    // Leveling System
-    public int GetCurrentLevel() {
-        int level = 0;
-        int add = 0;
-        
-        while (experience >= add) {
-            add += expTable[level];
-            level++;
+  // Health Bar
+  public void OnHitPointChange() {
+    float ratio = (float)player.hitPoint / (float)player.maxHitPoint;
+    // hitPointBar.localScale = new Vector3(1, ratio, 1);
+  }
 
-            if (level == expTable.Count) {
-                return level;
-            }
-        }
-        return level;
-    }
+  // Leveling System
+  public int GetCurrentLevel() {
+    int level = 0;
+    int add = 0;
+    
+    while (experience >= add) {
+        add += expTable[level];
+        level++;
 
-    public int GetExpToLevel(int level) {
-        int r = 0;
-        int exp = 0;
-
-        while (r < level) {
-            exp += expTable[r];
-            r++;
-        }
-        return exp;
-    }
-
-    public void GrantExp(int exp) {
-        int curLevel = GetCurrentLevel();
-        experience += exp;
-        if (curLevel < GetCurrentLevel()) {
-            OnLevelUp();
+        if (level == expTable.Count) {
+            return level;
         }
     }
+    return level;
+  }
 
-    public void OnLevelUp() {
-        player.OnLevelUp();
-        OnHitPointChange();
+  public int GetExpToLevel(int level) {
+    int r = 0;
+    int exp = 0;
+
+    while (r < level) {
+        exp += expTable[r];
+        r++;
     }
+    return exp;
+  }
 
-    public void OnSceneLoad(Scene scene, LoadSceneMode mode) {
-        player.transform.position = GameObject.Find(startPoint).transform.position;
+  public void GrantExp(int exp) {
+    int curLevel = GetCurrentLevel();
+    experience += exp;
+    if (curLevel < GetCurrentLevel()) {
+        OnLevelUp();
     }
+  }
 
-    // Death Menu and respawn
-    public void Respawn() {
-        deathMenuAnim.SetTrigger("Hide");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
-        player.Respawn();
-    }
+  public void OnLevelUp() {
+    player.OnLevelUp();
+    OnHitPointChange();
+  }
 
-    /*
-    * INT preferredSkin
-    * INT marks
-    * INT experience
-    * INT weaponLevel
-    */
-    public void SaveState() {
-        string s = "";
-        s += "0" + "|";
-        // s += marks.ToString() + "|";
-        // s += experience.ToString() + "|";
-        // s += weapon.weaponLevel.ToString();
-
-        PlayerPrefs.SetString("SaveState", s);
-    }
-
-    public void LoadState(Scene scene, LoadSceneMode mode) {
-        SceneManager.sceneLoaded -= LoadState;
-
-        if (!PlayerPrefs.HasKey("SaveState")) {
-            return;
-        }
-
-        string[] data = PlayerPrefs.GetString("SaveState").Split('|');
-        
-        // marks = int.Parse(data[1]);
-        // experience = int.Parse(data[2]);
-        // if (GetCurrentLevel() != 1)
-        // {
-        // player.SetLevel(GetCurrentLevel());
-        // }
-        // weapon.SetWeaponLevel(int.Parse(data[3]));
-
-        player.transform.position = GameObject.Find(startPoint).transform.position;
-    }
-
-    public string ReceiveItem(int id) {
-        Item itemToAdd = itemDatabase.GetItem(id);
-        inventory.Add(itemToAdd);
-        Debug.Log("added" + itemToAdd.itemName);
-        return itemToAdd.description;
-    }
+  // Death Menu and respawn
+  public void Respawn() {
+    deathMenuAnim.SetTrigger("Hide");
+    UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+    player.Respawn();
+  }
 }

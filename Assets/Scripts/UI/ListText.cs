@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ListItem : MonoBehaviour {
-  public void SetText(string myText, Color myColor) {
+public class ListText : MonoBehaviour {
+  private int id;
+
+  public void SetText(string myText, Color myColor, int entryId) {
     GetComponent<Text>().text = myText;
     GetComponent<Text>().color = myColor;
+    id = entryId;
   }
 }

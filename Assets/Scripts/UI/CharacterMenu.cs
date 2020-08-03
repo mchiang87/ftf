@@ -20,6 +20,7 @@ public class CharacterMenu : MonoBehaviour {
         weaponSprite;
 
     public RectTransform expBar;
+    public Button party;
 
     public void Start() {
         anim = GetComponent<Animator>();
@@ -30,6 +31,7 @@ public class CharacterMenu : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Tab)) {
             Time.timeScale = Convert.ToSingle(showMenu);
             showMenu = !showMenu;
+            party.Select();
             anim.SetBool("ShowMenu", showMenu);
         }
     }

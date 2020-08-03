@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour {
   public int menuTabIndex;
@@ -12,7 +14,7 @@ public class MenuManager : MonoBehaviour {
   public float yOffset;
   public float xOffset;
 
-  private List<string> menuTabs; // Change from string to menu class?
+  public List<string> menuTabs; // Change from string to menu class?
   private List<List<string>> menuItems; // Change from string to menu class?
   private int menuTabCount;
   private int menuItemCount;
@@ -79,6 +81,7 @@ public class MenuManager : MonoBehaviour {
           position.x += xOffset;
           selector.transform.position = position;
           anim.SetTrigger("ShowNext");
+          Debug.Log(EventSystem.current.currentSelectedGameObject.name);
         }
       }
 
@@ -90,6 +93,7 @@ public class MenuManager : MonoBehaviour {
           position.x -= xOffset;
           selector.transform.position = position;
           anim.SetTrigger("ShowPrevious");
+          Debug.Log(EventSystem.current.currentSelectedGameObject.name);
         }
       }
 
