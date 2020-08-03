@@ -16,8 +16,8 @@ public class QuestDatabase : MonoBehaviour
 
     private void BuildDatabase() {
         quests = new List<Quest>() {
-            new Quest(0, "Find me a gem", new List<string>() {"Find a gem", "Come back with a gem"}, 0),
-            new Quest(1, "Find me a heart", new List<string>() {"Find a heart", "Come back with a heart"}, 1),
+            new Quest(0, "Find me a gem", new List<string>() {"Find a gem", "Come back with a gem"}, 0, false),
+            new Quest(1, "Find me a heart", new List<string>() {"Find a heart", "Come back with a heart"}, 1, false),
         };
         Debug.Log(quests);
     }

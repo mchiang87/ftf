@@ -16,8 +16,8 @@ public class RecipeDatabase : MonoBehaviour
 
     private void BuildDatabase() {
         recipes = new List<Recipe>() {
-            new Recipe(0, "Biscuit", "A soft biscuit", new List<int>() {0, 1}),
-            new Recipe(1, "Scrambled Eggs", "Scrambled Eggs", new List<int>() {0, 1}),
+            new Recipe(0, "Biscuit", "A soft biscuit", new List<int>() {0, 1}, false),
+            new Recipe(1, "Scrambled Eggs", "Scrambled Eggs", new List<int>() {0, 1}, false),
         };
         Debug.Log(recipes);
     }
