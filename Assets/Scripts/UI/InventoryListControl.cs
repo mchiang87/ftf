@@ -7,16 +7,14 @@ public class InventoryListControl : MonoBehaviour {
 
   [SerializeField]
   private GameObject item;
+  // private Inventory inventory;
+  private List<Item> inventory;
 
   private List<GameObject> textItems;
-  private List<Item> inventory;
 
   public void Start() {
     textItems = new List<GameObject>();
-    inventory = GameManager.instance.inventory;
-  }
-
-  public void Update() {
+    inventory = FindObjectOfType<Inventory>().inventory;
     for(int i = 0; i < inventory.Count; i++) {
       Debug.Log(inventory[i].itemName);
       CreateTextEntry(inventory[i].itemName, Color.white, inventory[i].itemID);
@@ -32,4 +30,7 @@ public class InventoryListControl : MonoBehaviour {
     textItems.Add(listItem.gameObject);
   }
 
+  public void RemoveTextEntry(int id) {
+    
+  }
 }

@@ -17,10 +17,6 @@ public class InteractNPC : Interactable {
 
   protected override void Interact() {
     if (!interacted) {
-      // Item item = new Item {
-      //     itemID = itemID,
-      // };
-      // GameManager.instance.AddItemToInventory(item);
       if (!dialogueManager.dialogueActive) {
           dialogueManager.dialogueLines = new string[] {"Hi, I'm an NPC", "This is my second sentence!", "This third!"};;
           dialogueManager.currentLine = 0;

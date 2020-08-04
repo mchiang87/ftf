@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ListText : MonoBehaviour {
-  private int id;
+  public int id;
 
   public void SetText(string myText, Color myColor, int entryId) {
     GetComponent<Text>().text = myText;

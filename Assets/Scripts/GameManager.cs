@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
   public static GameManager instance;
-  private InventoryListControl inventoryListControl;
-  public List<Item> inventory = new List<Item>();
-  public ItemDatabase itemDatabase;
 
   // Resources
   public List<Sprite> playerSprites;
@@ -84,27 +81,6 @@ public class GameManager : MonoBehaviour {
     // weapon.SetWeaponLevel(int.Parse(data[3]));
 
     player.transform.position = GameObject.Find(startPoint).transform.position;
-  }
-#endregion
-
-#region Inventory
-  public string AddItemToInventory(int id) {
-    Item itemToAdd = itemDatabase.GetItem(id);
-    inventory.Add(itemToAdd);
-    Debug.Log("added" + itemToAdd.itemName);
-    return itemToAdd.description;
-  }
-
-  public void RemoveItemFromInventory(int id) {
-    Item itemToRemove = CheckForItem(id);
-    if (itemDatabase != null) {
-      inventory.Remove(itemToRemove);
-    }
-    Debug.Log("removed" + itemToRemove.itemName);
-  }
-
-  public Item CheckForItem(int id) {
-    return inventory.Find(item => item.itemID == id);
   }
 #endregion
 

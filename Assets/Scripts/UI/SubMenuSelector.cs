@@ -12,10 +12,12 @@ public class SubMenuSelector : MonoBehaviour {
   public GameObject selector;
   public float yOffset;
   public float xOffset;
+  private Inventory inventory;
 
   // Start is called before the first frame update
   void Start() {
-    menuItemCount = GameManager.instance.inventory.Count;
+    menuItemCount = FindObjectOfType<Inventory>().inventory.Count;
+    // menuItemCount = GameManager.instance.inventory.Count;
     originalSelectPos = new Vector3(selector.transform.position.x,selector.transform.position.y, 0f);
   }
 
