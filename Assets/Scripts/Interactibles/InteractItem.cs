@@ -23,7 +23,7 @@ public class InteractItem : Interactable {
   protected override void Interact() {
     if (!interacted) {
       spriteRenderer.sprite = afterInteract;
-      item = inventory.AddItemToInventory(itemID);
+      item = inventory.AddItemToInventory(itemID, 1);
       if (!dialogueManager.dialogueActive) {
         dialogueManager.dialogueLines = new string[] {"You received " + item + "!", "Testing second line!"};
         dialogueManager.currentLine = 0;

@@ -26,19 +26,17 @@ public class InventoryListControl : MonoBehaviour {
     displayed = false;
     textItems = new List<GameObject>();
     inventory = FindObjectOfType<Inventory>().inventory;
-    if (inventory != null) {
-      for(int i = 0; i < inventory.Count; i++) {
-        Debug.Log(inventory[i].itemName);
-        CreateTextEntry(inventory[i].itemName, Color.white, inventory[i].itemID);
-      }
-    }
-    Debug.Log(inventory);
+    // if (inventory != null) {
+    //   for(int i = 0; i < inventory.Count; i++) {
+    //     Debug.Log(inventory[i].itemName);
+    //     CreateTextEntry(inventory[i].itemName, Color.white, inventory[i].itemID);
+    //   }
+    // }
   }
 
   public void Update() {
     if(textItems.Any()) {
       displayed = true;
-      Debug.Log(inventory);
       // itemDisplayed = inventory.Find(it => it.itemID == textItems[0].GetComponent<ListText>().id);
       // // itemPortrait = itemDisplayed.sprite;
       // itemFlavorText.text = itemDisplayed.flavorText;
@@ -77,10 +75,10 @@ public class InventoryListControl : MonoBehaviour {
   }
 
   // Creates a new text Entry
-  public void CreateTextEntry(string newText, Color newColor, int id) {
+  public void CreateTextEntry(string newText, Color newColor, int id, int amount) {
     GameObject listItem = Instantiate(item) as GameObject;
     listItem.SetActive(true);
-    listItem.GetComponent<ListText>().SetText(newText, newColor, id);
+    listItem.GetComponent<ListText>().SetText(newText, newColor, id, amount);
     listItem.transform.SetParent(item.transform.parent, false);
     textItems.Add(listItem.gameObject);
   }

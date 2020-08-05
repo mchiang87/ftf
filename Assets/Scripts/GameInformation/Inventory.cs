@@ -13,21 +13,26 @@ public class Inventory : MonoBehaviour {
   void Start() {
     inventory = new List<Item>();
     inventoryListControl = FindObjectOfType<InventoryListControl>();
+
+    // once save inventory implemented, below makes more sense
+    if (inventory.Any()) {
+      for(int i = 0; i < inventory.Count; i++) {
+        Debug.Log(inventory[i].itemName);
+        inventoryListControl.CreateTextEntry(inventory[i].itemName, Color.white, i, 1);
+      }
+    }
   }
 
   // Update is called once per frame
   void Update()
   {
-    if (inventory.Any()) {
-      Debug.Log(inventory[0]);
-    }
   }
 
   #region Inventory
-  public string AddItemToInventory(int id) {
+  public string AddItemToInventory(int id, int amount) {
     Item itemToAdd = itemDatabase.GetItem(id);
     inventory.Add(itemToAdd);
-    inventoryListControl.CreateTextEntry(itemToAdd.itemName, Color.white, id);
+    inventoryListControl.CreateTextEntry(itemToAdd.itemName, Color.white, id, amount);
     Debug.Log("added" + itemToAdd.itemName);
     return itemToAdd.description;
   }
