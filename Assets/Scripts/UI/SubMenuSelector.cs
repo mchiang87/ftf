@@ -11,7 +11,6 @@ public class SubMenuSelector : MonoBehaviour {
   public Vector3 originalSelectPos;
   public GameObject selector;
   public float yOffset;
-  public float xOffset;
   private Inventory inventory;
 
   // Start is called before the first frame update

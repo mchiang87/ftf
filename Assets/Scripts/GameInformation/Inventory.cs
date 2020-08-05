@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour {
@@ -17,7 +18,9 @@ public class Inventory : MonoBehaviour {
   // Update is called once per frame
   void Update()
   {
-      
+    if (inventory.Any()) {
+      Debug.Log(inventory[0]);
+    }
   }
 
   #region Inventory

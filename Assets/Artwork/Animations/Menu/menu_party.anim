@@ -33,7 +33,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Party
+    path: PartyMenu
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -52,7 +52,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Inventory
+    path: InventoryMenu
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -71,7 +71,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Recipes
+    path: RecipeMenu
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -90,7 +90,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Journal
+    path: JournalMenu
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -109,7 +109,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Settings
+    path: SettingsMenu
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -121,35 +121,35 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1213489636
+      path: 1810871079
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 870107285
+      path: 1514711238
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1825889065
+      path: 2924932043
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 236642001
+      path: 2472379575
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 473154195
+      path: 8626358
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -193,7 +193,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Party
+    path: PartyMenu
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -212,7 +212,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Inventory
+    path: InventoryMenu
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -231,7 +231,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Recipes
+    path: RecipeMenu
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -250,7 +250,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Journal
+    path: JournalMenu
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -269,7 +269,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Settings
+    path: SettingsMenu
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []

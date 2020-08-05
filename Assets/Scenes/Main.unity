@@ -8977,7 +8977,7 @@ GameObject:
   - component: {fileID: 963981612}
   - component: {fileID: 963981611}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: InventoryMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12233,6 +12233,7 @@ GameObject:
   - component: {fileID: 1442941799}
   - component: {fileID: 1442941798}
   - component: {fileID: 1442941797}
+  - component: {fileID: 1442941800}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -12288,6 +12289,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1442941800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442941796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55904a06e3f3bbf4aa18b81c583d24d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1470530061
 GameObject:
   m_ObjectHideFlags: 0
@@ -12426,6 +12439,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 2080405537}
+  itemFlavorText: {fileID: 1217206704}
+  itemDescription: {fileID: 1491133606}
+  selector: {fileID: 1536751392}
+  yOffset: 0
+  originalSelectPos: {x: 0, y: 0, z: 0}
+  menuItemIndex: 0
 --- !u!114 &1471551391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12456,6 +12475,50 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1472844720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1472844721}
+  - component: {fileID: 1472844722}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1472844721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472844720}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1629620059}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1472844722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472844720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27df0fec2c7c8847a6a9deb2348984e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDatabase: {fileID: 1256098554}
 --- !u!1 &1491133604
 GameObject:
   m_ObjectHideFlags: 0
@@ -12697,7 +12760,7 @@ GameObject:
   - component: {fileID: 1539580967}
   - component: {fileID: 1539580966}
   m_Layer: 5
-  m_Name: Journal
+  m_Name: JournalMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13265,7 +13328,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.95, y: -0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1472844721}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13281,7 +13345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad45107f6aa34e4d8fc2b3e942c96cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDatabase: {fileID: 1256098554}
   playerSprites:
   - {fileID: -5826095759849432473, guid: 0f730fbef7baa704ca8a291006f5bb37, type: 3}
   characterSprites: []
@@ -13763,7 +13826,7 @@ GameObject:
   - component: {fileID: 1749688962}
   - component: {fileID: 1749688961}
   m_Layer: 5
-  m_Name: Party
+  m_Name: PartyMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13837,7 +13900,7 @@ GameObject:
   - component: {fileID: 1759594578}
   - component: {fileID: 1759594577}
   m_Layer: 5
-  m_Name: Recipes
+  m_Name: RecipeMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13911,7 +13974,7 @@ GameObject:
   - component: {fileID: 1796450853}
   - component: {fileID: 1796450852}
   m_Layer: 5
-  m_Name: Settings
+  m_Name: SettingsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14707,6 +14770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfedb75cba3ec540b38b2511ca57e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
 --- !u!114 &2080405540
 MonoBehaviour:
   m_ObjectHideFlags: 0
