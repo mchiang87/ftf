@@ -25,46 +25,41 @@ public class InventoryListControl : MonoBehaviour {
   public void Start() {
     displayed = false;
     textItems = new List<GameObject>();
-    inventory = FindObjectOfType<Inventory>().inventory;
-    // if (inventory != null) {
-    //   for(int i = 0; i < inventory.Count; i++) {
-    //     Debug.Log(inventory[i].itemName);
-    //     CreateTextEntry(inventory[i].itemName, Color.white, inventory[i].itemID);
-    //   }
-    // }
+    originalSelectPos = new Vector3(selector.transform.position.x,selector.transform.position.y, 0f);
   }
 
   public void Update() {
-    if(textItems.Any()) {
+    if(textItems.Any() && displayed == false) {
       displayed = true;
-      // itemDisplayed = inventory.Find(it => it.itemID == textItems[0].GetComponent<ListText>().id);
-      // // itemPortrait = itemDisplayed.sprite;
-      // itemFlavorText.text = itemDisplayed.flavorText;
-      // itemDescription.text = itemDisplayed.description;
+      SetItemDescription(0);
     };
-    // menuItemCount = textItems.Count();
-    // // Menu Navigation
-    // if (EventSystem.current.currentSelectedGameObject.name == "Inventory") {
-    //   // select down
-    //   if (Input.GetKeyDown(KeyCode.DownArrow)) {
-    //     if (menuItemIndex <= menuItemCount - 1) {
-    //       menuItemIndex++;
-    //       Vector3 position = transform.position;
-    //       position.y += yOffset;
-    //       transform.position = position;
-    //     }
-    //   }
+    menuItemCount = textItems.Count();
+    // Menu Navigation
+    // if (EventSystem.current.currentSelectedGameObject.name == "InventoryTab") {
+      // select down
+      if (displayed == true) {
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+          if (menuItemIndex < menuItemCount - 1) {
+            menuItemIndex++;
+            Vector3 position = selector.transform.position;
+            position.y -= yOffset;
+            selector.transform.position = position;
+            SetItemDescription(menuItemIndex);
+          }
+        }
 
-    //   // select up
-    //   if (Input.GetKeyDown(KeyCode.UpArrow)) {
-    //     if (menuItemIndex > 0) {
-    //       menuItemIndex--;
-    //       Vector3 position = transform.position;
-    //       position.y -= yOffset;
-    //       transform.position = position;
-    //     }
-    //   }
-
+        // select up
+        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+          if (menuItemIndex > 0) {
+            menuItemIndex--;
+            Vector3 position = selector.transform.position;
+            position.y += yOffset;
+            selector.transform.position = position;
+            SetItemDescription(menuItemIndex);
+          }
+        }
+      }
+    // }
     //   if (Input.GetKeyDown(KeyCode.Space)) {
     //     // Select menu item and use for submenu if exist
     //   }
@@ -84,6 +79,14 @@ public class InventoryListControl : MonoBehaviour {
   }
 
   public void RemoveTextEntry(int id) {
-    
+
+  }
+
+  public void SetItemDescription(int index) {
+    inventory = FindObjectOfType<Inventory>().inventory;
+    itemDisplayed = inventory.Find(it => it.itemID == textItems[index].GetComponent<ListText>().id);
+    itemFlavorText.text = itemDisplayed.flavorText;
+    itemDescription.text = itemDisplayed.description;
+    // itemPortrait = itemDisplayed.sprite;
   }
 }

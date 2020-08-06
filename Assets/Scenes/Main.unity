@@ -394,7 +394,7 @@ MonoBehaviour:
   yBlinkSpeed: 15
   hitPoint: 10
   maxHitPoint: 10
-  drop: {fileID: 0}
+  drop: {fileID: 684063020}
 --- !u!95 &45616814
 Animator:
   serializedVersion: 3
@@ -11336,12 +11336,12 @@ GameObject:
   - component: {fileID: 1217206705}
   - component: {fileID: 1217206704}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FlavorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1217206703
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11393,7 +11393,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1217206705
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12442,7 +12442,7 @@ MonoBehaviour:
   itemFlavorText: {fileID: 1217206704}
   itemDescription: {fileID: 1491133606}
   selector: {fileID: 1536751392}
-  yOffset: 0
+  yOffset: -30
   originalSelectPos: {x: 0, y: 0, z: 0}
   menuItemIndex: 0
 --- !u!114 &1471551391
@@ -12531,12 +12531,12 @@ GameObject:
   - component: {fileID: 1491133607}
   - component: {fileID: 1491133606}
   m_Layer: 5
-  m_Name: Text
+  m_Name: DescriptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1491133605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12588,7 +12588,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1491133607
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14771,6 +14771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  amount: 0
 --- !u!114 &2080405540
 MonoBehaviour:
   m_ObjectHideFlags: 0
