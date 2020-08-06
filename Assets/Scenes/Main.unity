@@ -1150,12 +1150,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 550668555}
+  textItems: []
+  displayed: 0
   itemFlavorText: {fileID: 1217206704}
   itemDescription: {fileID: 1491133606}
   selector: {fileID: 967851860}
   yOffset: 30
   originalSelectPos: {x: 0, y: 0, z: 0}
   menuItemIndex: 0
+  menuItemCount: 0
 --- !u!114 &112540647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14899,7 +14902,7 @@ GameObject:
   - component: {fileID: 1471551391}
   - component: {fileID: 1471551390}
   m_Layer: 5
-  m_Name: InventoryList
+  m_Name: InventoryListControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14972,7 +14975,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1471551386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2532720b1d8e5254584616b662e216ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 49e464562bd007b41ba1f14b3b027003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 2080405537}
@@ -17827,12 +17830,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1873700505}
+  textItems: []
+  displayed: 0
   itemFlavorText: {fileID: 1217206704}
   itemDescription: {fileID: 1491133606}
   selector: {fileID: 322667588}
   yOffset: 30
   originalSelectPos: {x: 0, y: 0, z: 0}
   menuItemIndex: 0
+  menuItemCount: 0
 --- !u!114 &1864636166
 MonoBehaviour:
   m_ObjectHideFlags: 0
