@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ListControl : MonoBehaviour {
+public class InventoryListControl : MonoBehaviour {
 
   [SerializeField]
   private GameObject item;
