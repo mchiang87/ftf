@@ -16,6 +16,9 @@ public class RecipeListControl : MonoBehaviour {
   private bool displayed;
   // public Sprite itemPortrait;
   public Text recipeFlavorText;
+  public Sprite recipeFirstIngredientSprite;
+  public Sprite recipeSecondIngredientSprite;
+  public Sprite recipeThirdIngredientSprite;
   public GameObject selector;
   public float yOffset;
   public Vector3 originalSelectPos;
