@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Item {
-    public int itemID;
-    public string itemName;
+    public int ID;
+    public string name;
     public string flavorText;
-    public int itemType;
+    public int type;
     public string description;
     public Dictionary<string, int> stats = new Dictionary<string, int>();
     // public Sprite thumbnail;
     // public Sprite portrait;
 
-    public Item(int itemID, string itemName, string flavorText, int itemType, string description, Dictionary<string, int> stats) {
-        this.itemID = itemID;
-        this.itemName = itemName;
+    public Item(int ID, string name, string flavorText, int type, string description, Dictionary<string, int> stats) {
+        this.ID = ID;
+        this.name = name;
         this.flavorText = flavorText;
-        this.itemType = itemType;
+        this.type = type;
         this.description = description;
         this.stats = stats;
         // this.thumbnail = Resource.Load<Sprite>("Sprites/Items/" + itemID);

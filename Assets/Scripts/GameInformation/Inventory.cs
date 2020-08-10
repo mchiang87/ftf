@@ -17,8 +17,8 @@ public class Inventory : MonoBehaviour {
     // once save inventory implemented, below makes more sense
     if (inventory.Any()) {
       for(int i = 0; i < inventory.Count; i++) {
-        Debug.Log(inventory[i].itemName);
-        inventoryListControl.CreateTextEntry(inventory[i].itemName, Color.white, i, 1);
+        Debug.Log(inventory[i].name);
+        inventoryListControl.CreateTextEntry(inventory[i].name, Color.white, i, 1);
       }
     }
   }
@@ -32,8 +32,8 @@ public class Inventory : MonoBehaviour {
   public string AddItemToInventory(int id, int amount) {
     Item itemToAdd = itemDatabase.GetItem(id);
     inventory.Add(itemToAdd);
-    inventoryListControl.CreateTextEntry(itemToAdd.itemName, Color.white, id, amount);
-    Debug.Log("added" + itemToAdd.itemName);
+    inventoryListControl.CreateTextEntry(itemToAdd.name, Color.white, id, amount);
+    Debug.Log("added" + itemToAdd.name);
     return itemToAdd.description;
   }
 
@@ -42,11 +42,11 @@ public class Inventory : MonoBehaviour {
     if (itemDatabase != null) {
       inventory.Remove(itemToRemove);
     }
-    Debug.Log("removed" + itemToRemove.itemName);
+    Debug.Log("removed" + itemToRemove.name);
   }
 
   public Item CheckForItem(int id) {
-    return inventory.Find(item => item.itemID == id);
+    return inventory.Find(item => item.ID == id);
   }
 #endregion
 }

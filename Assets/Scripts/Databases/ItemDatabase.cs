@@ -9,7 +9,7 @@ public class ItemDatabase : MonoBehaviour {
   }
 
   public Item GetItem(int id) {
-    return items.Find(item => item.itemID == id);
+    return items.Find(item => item.ID == id);
   }
 
   private void BuildDatabase() {
@@ -24,81 +24,81 @@ public class ItemDatabase : MonoBehaviour {
             { "Heal", 5 }
           }
         ),
-        new Item(2, "Carobit Meat", "Meat from a carobit", 0, "Used for cooking",
+        new Item(2, "Carobit Meat", "Meat from a carobit", 1, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Carrot", "A carrot", 0, "Used for cooking",
+        new Item(3, "Carrot", "A carrot", 2, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Strawberry", "A strawberry", 0, "Used for cooking",
+        new Item(4, "Strawberry", "A strawberry", 3, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Long Bean", "A long bean", 0, "Used for cooking",
+        new Item(5, "Long Bean", "A long bean", 2, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Khojit Meat", "Meat from a khojit", 0, "Used for cooking",
+        new Item(6, "Khojit Meat", "Meat from a khojit", 1, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Peppercorns", "Some peppercorns", 0, "Used for cooking",
+        new Item(7, "Bell Pepper", "A bell pepper", 2, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Tubor Meat", "Meat from a tubor", 0, "Used for cooking",
+        new Item(8, "Tubor Meat", "Meat from a tubor", 1, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Tuber", "A tuber", 0, "Used for cooking",
+        new Item(9, "Tuber", "A tuber", 2, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Mushroom", "A mushroom", 0, "Used for cooking",
+        new Item(10, "Mushroom", "A mushroom", 2, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Fowlbeast Meat", "Meat from a fowlbeast", 0, "Used for cooking",
+        new Item(11, "Fowlbeast Meat", "Meat from a fowlbeast", 1, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Rice Grains", "Some grains of rice", 0, "Used for cooking",
+        new Item(12, "Rice Grains", "Some grains of rice", 4, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Carobit Meat", "Meat from a carobit", 0, "Used for cooking",
+        new Item(13, "Sugarcane", "A sugarcane", 3, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Sugarcane", "A sugarcane", 0, "Used for cooking",
+        new Item(14, "Celobit Meat", "Meat from a celobit", 1, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Celobit Meat", "Meat from a celobit", 0, "Used for cooking",
+        new Item(15, "Celery", "A celery", 2, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
         ),
-        new Item(2, "Celery", "A celery", 0, "Used for cooking",
+        new Item(16, "Flour", "Flour", 4, "Used for cooking",
           new Dictionary<string, int> {
             { "Marks", 10 }
           }
-        ),
+        ),        
     };
   }
 }
