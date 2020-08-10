@@ -5,7 +5,7 @@ using UnityEngine;
 public class Recipe {
     public int ID;
     public string name;
-    public string description;
+    public string flavorText;
     public float multiplier;
     public List<int> firstSlotIngredient;
     public List<int> secondSlotIngredient;
@@ -13,10 +13,10 @@ public class Recipe {
     // public Sprite portrait;
     // public int itemID; will be used to reference recipe's dish portrait
 
-    public Recipe(int ID, string name, string description, float multiplier, List<int> firstSlotIngredient, List<int> secondSlotIngredient = null, List<int> thirdSlotIngredient = null) {
+    public Recipe(int ID, string name, string flavorText, float multiplier, List<int> firstSlotIngredient, List<int> secondSlotIngredient = null, List<int> thirdSlotIngredient = null) {
         this.ID = ID;
         this.name = name;
-        this.description = description;
+        this.flavorText = flavorText;
         this.multiplier = multiplier;
         this.firstSlotIngredient = firstSlotIngredient;
         this.secondSlotIngredient = secondSlotIngredient;
