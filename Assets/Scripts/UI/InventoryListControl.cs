@@ -84,7 +84,7 @@ public class InventoryListControl : MonoBehaviour {
 
   public void SetItemDescription(int index) {
     inventory = FindObjectOfType<Inventory>().inventory;
-    itemDisplayed = inventory.Find(it => it.itemID == textItems[index].GetComponent<ListText>().id);
+    itemDisplayed = inventory.Find(it => it.ID == textItems[index].GetComponent<ListText>().id);
     itemFlavorText.text = itemDisplayed.flavorText;
     itemDescription.text = itemDisplayed.description;
     // itemPortrait = itemDisplayed.sprite;
