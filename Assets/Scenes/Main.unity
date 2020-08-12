@@ -1259,7 +1259,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10662,7 +10662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &963981610
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12984,7 +12984,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17036,7 +17036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.36040404, g: 0.52893084, b: 0.8584906, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -17587,7 +17587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1759594576
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17927,19 +17927,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1864636163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2532720b1d8e5254584616b662e216ed, type: 3}
+  m_Script: {fileID: 11500000, guid: e39157fbe290c304c9291d1af71de989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 1873700505}
-  textItems: []
-  displayed: 0
-  itemFlavorText: {fileID: 1217206704}
-  itemDescription: {fileID: 1491133606}
+  recipe: {fileID: 1873700505}
+  recipeFlavorText: {fileID: 671793792}
+  recipeFirstIngredientSprite: {fileID: 14042478}
+  recipeSecondIngredientSprite: {fileID: 1353560926}
+  recipeThirdIngredientSprite: {fileID: 421326568}
   selector: {fileID: 322667588}
   yOffset: 30
   originalSelectPos: {x: 0, y: 0, z: 0}
   menuItemIndex: 0
-  menuItemCount: 0
 --- !u!114 &1864636166
 MonoBehaviour:
   m_ObjectHideFlags: 0
