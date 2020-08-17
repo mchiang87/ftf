@@ -31,6 +31,10 @@ public class RecipeListControl : MonoBehaviour {
     displayed = false;
     textItems = new List<GameObject>();
     originalSelectPos = new Vector3(selector.transform.position.x,selector.transform.position.y, 0f);
+    // for(int i = 0; i < inventory.Count; i++) {
+    //   Debug.Log(inventory[i].name);
+    //   inventoryListControl.CreateTextEntry(inventory[i].name, Color.white, i, 1);
+    // }
   }
 
   public void Update() {
@@ -40,7 +44,6 @@ public class RecipeListControl : MonoBehaviour {
     };
     menuItemCount = textItems.Count();
     // Menu Navigation
-    // if (EventSystem.current.currentSelectedGameObject.name == "InventoryTab") {
       // select down
       if (displayed == true) {
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
@@ -63,29 +66,29 @@ public class RecipeListControl : MonoBehaviour {
             SetRecipeFlavorText(menuItemIndex);
           }
         }
-      }
-    // }
-    //   if (Input.GetKeyDown(KeyCode.Space)) {
-    //     // Select menu item and use for submenu if exist
-    //   }
-    // } else {
-    //   menuItemIndex = 0;
-    //   selector.transform.position = originalSelectPos;
-    // }
+
+        // if (Input.GetKeyDown(KeyCode.Space)) {
+        //   // Select menu item and use for submenu if exist
+        // }
+      } else {
+      menuItemIndex = 0;
+      selector.transform.position = originalSelectPos;
+    }
   }
 
   // Creates a new text Entry
-  public void CreateTextEntry(string newText, Color newColor, int id, int amount) {
+  public void CreateTextEntry(string newText, Color newColor, int id) {
     GameObject listRecipeEven = Instantiate(recipeEven) as GameObject;
     GameObject listRecipeOdd = Instantiate(recipeOdd) as GameObject;
     listRecipeEven.SetActive(true);
-    listRecipeEven.GetComponent<ListText>().SetText(newText, newColor, id, amount);
+    listRecipeEven.GetComponent<ListText>().SetText(newText, newColor, id);
     listRecipeEven.transform.SetParent(recipeEven.transform.parent, false);
     textItems.Add(listRecipeEven.gameObject);
   }
 
-  public void RemoveTextEntry(int id) {
-
+  public void UpdateTextEntry(string newText, Color newColor, int id) {
+    GameObject entryToUpdate = textItems.Find(entry => entry.GetComponent<ListText>().id == id);
+    entryToUpdate.GetComponent<ListText>().UpdateText(newText, newColor);
   }
 
   public void SetRecipeFlavorText(int index) {

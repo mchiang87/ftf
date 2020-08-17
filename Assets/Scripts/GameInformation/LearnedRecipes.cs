@@ -18,7 +18,7 @@ public class LearnedRecipes : MonoBehaviour {
     if (learnedRecipes.Any()) {
       for(int i = 0; i < learnedRecipes.Count; i++) {
         Debug.Log(learnedRecipes[i].name);
-        recipeListControl.CreateTextEntry(learnedRecipes[i].name, Color.white, i, 1);
+        recipeListControl.UpdateTextEntry(learnedRecipes[i].name, Color.white, i);
       }
     }
   }
@@ -28,11 +28,11 @@ public class LearnedRecipes : MonoBehaviour {
   {
   }
 
-  #region Inventory
-  public string LearnRecipe(int id, int amount) {
+  #region Recipes
+  public string LearnRecipe(int id) {
     Recipe recipeToAdd = recipeDatabase.GetRecipe(id);
     learnedRecipes.Add(recipeToAdd);
-    recipeListControl.CreateTextEntry(recipeToAdd.name, Color.white, id, amount);
+    recipeListControl.UpdateTextEntry(recipeToAdd.name, Color.white, id);
     Debug.Log("added" + recipeToAdd.name);
     return recipeToAdd.flavorText;
   }
