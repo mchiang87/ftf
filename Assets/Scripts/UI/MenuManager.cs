@@ -8,8 +8,7 @@ public class MenuManager : MonoBehaviour {
   public int menuTabIndex;
   public int menuItemIndex;
   public Vector3 originalSelectPos;
-  public Animator anim;
-  public CharacterMenu characterMenu; // remove once merge this file with charactermenu file
+  public MenuSwitch menuSwitch;
   public GameObject selector;
   public float yOffset;
   public float xOffset;
@@ -20,8 +19,8 @@ public class MenuManager : MonoBehaviour {
   private int menuItemCount;
   private int currentCharacterSelection = 0;
   private bool onMenuTab;
+  private Animator anim;
 
-    // Start is called before the first frame update
   void Start() {
     menuTabs = new List<string> {
       "Party",
@@ -67,13 +66,13 @@ public class MenuManager : MonoBehaviour {
     originalSelectPos = new Vector3(selector.transform.position.x,selector.transform.position.y, 0f);
   }
 
-  // Update is called once per frame
   void Update() {
     // Menu updates
     // if (menuTabIndex = menuTabs[])
 
     // Menu Navigation
-    if (characterMenu.showMenu) {
+    if (menuSwitch.showMenu && onMenuTab) {
+      // select right
       if (Input.GetKeyDown(KeyCode.RightArrow)) {
         if (menuTabIndex < menuTabCount - 1) {
           menuTabIndex++;
@@ -97,28 +96,9 @@ public class MenuManager : MonoBehaviour {
         }
       }
 
-      // select down
-      if (Input.GetKeyDown(KeyCode.DownArrow)) {
-        if (menuItemIndex <= menuItemCount - 1) {
-          menuItemIndex++;
-          Vector3 position = transform.position;
-          position.y += yOffset;
-          transform.position = position;
-        }
-      }
-
-      // select up
-      if (Input.GetKeyDown(KeyCode.UpArrow)) {
-        if (menuItemIndex > 0) {
-          menuItemIndex--;
-          Vector3 position = transform.position;
-          position.y -= yOffset;
-          transform.position = position;
-        }
-      }
-
       if (Input.GetKeyDown(KeyCode.Space)) {
-        // Select menu item and use for submenu if exist
+        // relinquish control to individual menu controls
+        onMenuTab = false;
       }
     } else {
       menuTabIndex = 0;

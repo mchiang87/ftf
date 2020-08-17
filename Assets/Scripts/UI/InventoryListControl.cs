@@ -22,6 +22,7 @@ public class InventoryListControl : MonoBehaviour {
   public Vector3 originalSelectPos;
   public int menuItemIndex;
   private int menuItemCount;
+  
   public void Start() {
     displayed = false;
     textItems = new List<GameObject>();
@@ -35,7 +36,6 @@ public class InventoryListControl : MonoBehaviour {
     };
     menuItemCount = textItems.Count();
     // Menu Navigation
-    // if (EventSystem.current.currentSelectedGameObject.name == "InventoryTab") {
       // select down
       if (displayed == true) {
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
@@ -58,15 +58,10 @@ public class InventoryListControl : MonoBehaviour {
             SetItemDescription(menuItemIndex);
           }
         }
-      }
-    // }
-    //   if (Input.GetKeyDown(KeyCode.Space)) {
-    //     // Select menu item and use for submenu if exist
-    //   }
-    // } else {
-    //   menuItemIndex = 0;
-    //   selector.transform.position = originalSelectPos;
-    // }
+      } else {
+      menuItemIndex = 0;
+      selector.transform.position = originalSelectPos;
+    }
   }
 
   // Creates a new text Entry
@@ -79,7 +74,7 @@ public class InventoryListControl : MonoBehaviour {
   }
 
   public void RemoveTextEntry(int id) {
-
+    
   }
 
   public void SetItemDescription(int index) {

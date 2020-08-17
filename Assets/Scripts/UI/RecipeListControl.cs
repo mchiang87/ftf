@@ -8,7 +8,9 @@ using UnityEngine.EventSystems;
 public class RecipeListControl : MonoBehaviour {
 
   [SerializeField]
-  private GameObject recipe;
+  private GameObject recipeEven;
+  [SerializeField]
+  private GameObject recipeOdd;
   // private Inventory inventory;
   private List<Recipe> learnedRecipes;
   private Recipe recipeDisplayed;
@@ -24,6 +26,7 @@ public class RecipeListControl : MonoBehaviour {
   public Vector3 originalSelectPos;
   public int menuItemIndex;
   private int menuItemCount;
+  
   public void Start() {
     displayed = false;
     textItems = new List<GameObject>();
@@ -73,11 +76,12 @@ public class RecipeListControl : MonoBehaviour {
 
   // Creates a new text Entry
   public void CreateTextEntry(string newText, Color newColor, int id, int amount) {
-    GameObject listRecipe = Instantiate(recipe) as GameObject;
-    listRecipe.SetActive(true);
-    listRecipe.GetComponent<ListText>().SetText(newText, newColor, id, amount);
-    listRecipe.transform.SetParent(recipe.transform.parent, false);
-    textItems.Add(listRecipe.gameObject);
+    GameObject listRecipeEven = Instantiate(recipeEven) as GameObject;
+    GameObject listRecipeOdd = Instantiate(recipeOdd) as GameObject;
+    listRecipeEven.SetActive(true);
+    listRecipeEven.GetComponent<ListText>().SetText(newText, newColor, id, amount);
+    listRecipeEven.transform.SetParent(recipeEven.transform.parent, false);
+    textItems.Add(listRecipeEven.gameObject);
   }
 
   public void RemoveTextEntry(int id) {
