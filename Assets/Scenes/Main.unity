@@ -16662,6 +16662,7 @@ MonoBehaviour:
   yOffset: 0
   xOffset: 150
   menuTabs: []
+  onMenuTab: 0
 --- !u!1 &1864636163
 GameObject:
   m_ObjectHideFlags: 0
@@ -16715,8 +16716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39157fbe290c304c9291d1af71de989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipeEven: {fileID: 1873700505}
-  recipeOdd: {fileID: 436197793}
+  recipe: {fileID: 1873700505}
   recipeDatabase: {fileID: 1626071509}
   recipeFlavorText: {fileID: 671793792}
   recipeFirstIngredientSprite: {fileID: 14042478}
@@ -16724,8 +16724,8 @@ MonoBehaviour:
   recipeThirdIngredientSprite: {fileID: 421326568}
   selector: {fileID: 322667588}
   subSelector: {fileID: 606170023}
-  yOffsetMenu: 0
-  yOffsetSubMenu: 40
+  yOffsetMenu: 35
+  yOffsetSubMenu: 99
   originalMenuSelectPos: {x: 0, y: 0, z: 0}
   originalSubMenuSelectPos: {x: 0, y: 0, z: 0}
   menuItemIndex: 0
@@ -16842,7 +16842,7 @@ GameObject:
   - component: {fileID: 1873700508}
   - component: {fileID: 1873700507}
   m_Layer: 5
-  m_Name: RecipeTextEven
+  m_Name: RecipeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

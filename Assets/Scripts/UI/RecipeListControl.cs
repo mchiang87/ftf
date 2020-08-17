@@ -8,11 +8,10 @@ using UnityEngine.EventSystems;
 public class RecipeListControl : MonoBehaviour {
 
   [SerializeField]
-  private GameObject recipeEven;
-  [SerializeField]
-  private GameObject recipeOdd;
+  private GameObject recipe;
   [SerializeField]
   private RecipeDatabase recipeDatabase;
+  private MenuManager menuManager;  
   private LearnedRecipes learnedRecipes;
   private Recipe recipeDisplayed;
   private List<GameObject> textItems;
@@ -38,10 +37,11 @@ public class RecipeListControl : MonoBehaviour {
     displayed = false;
     textItems = new List<GameObject>();
     learnedRecipes = FindObjectOfType<LearnedRecipes>();
+    menuManager = FindObjectOfType<MenuManager>();
     originalMenuSelectPos = new Vector3(selector.transform.position.x,selector.transform.position.y, 0f);
     originalSubMenuSelectPos = new Vector3(subSelector.transform.position.x,subSelector.transform.position.y, 0f);
     for(int i = 0; i < recipeDatabase.recipes.Count; i++) {
-      CreateTextEntry(recipeDatabase.recipes[i].name, Color.white, i);
+      CreateTextEntry("???", Color.white, i);
     }
   }
 
@@ -78,7 +78,13 @@ public class RecipeListControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
           // Select menu item and use for submenu if exist
           onSubMenu = true;
+          menuManager.onMenuTab = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+          menuManager.onMenuTab = true;
+        }
+
       } else if (onSubMenu) {
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
           if (subMenuItemIndex <  2) {
@@ -99,9 +105,11 @@ public class RecipeListControl : MonoBehaviour {
           }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
-          // Opens up List of possible ingredients for ingredient slot
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+          onSubMenu = false;
+          menuManager.onMenuTab = true;
         }
+
       } else {
       menuItemIndex = 0;
       selector.transform.position = originalMenuSelectPos;
@@ -111,10 +119,6 @@ public class RecipeListControl : MonoBehaviour {
 
   // Creates a new text Entry
   public void CreateTextEntry(string newText, Color newColor, int id) {
-    GameObject recipe = recipeOdd;
-    if (id % 2 == 0) {
-      recipe = recipeEven;
-    }
     GameObject listRecipe = Instantiate(recipe) as GameObject;
     listRecipe.SetActive(true);
     listRecipe.GetComponent<ListText>().SetText(newText, newColor, id);
@@ -128,8 +132,12 @@ public class RecipeListControl : MonoBehaviour {
   }
 
   public void SetRecipeFlavorText(int index) {
-    recipeDisplayed = learnedRecipes.learnedRecipes.Find(it => it.ID == textItems[index].GetComponent<ListText>().id);
-    recipeFlavorText.text = recipeDisplayed.flavorText;
+    recipeDisplayed = learnedRecipes.learnedRecipes.Find(it => it.ID == index);
+    if (recipeDisplayed != null) {
+      recipeFlavorText.text = recipeDisplayed.flavorText;
+    } else {
+      recipeFlavorText.text = "Not yet discovered!";
+    }
     // recipePortrait = recipeDisplayed.portrait;
   }
 }

@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour {
   private int menuTabCount;
   private int menuItemCount;
   private int currentCharacterSelection = 0;
-  private bool onMenuTab;
+  public bool onMenuTab;
   private Animator anim;
 
   void Start() {
@@ -61,11 +61,6 @@ public class MenuManager : MonoBehaviour {
           anim.SetTrigger("ShowPrevious");
           Debug.Log(EventSystem.current.currentSelectedGameObject.name);
         }
-      }
-
-      if (Input.GetKeyDown(KeyCode.Space)) {
-        // relinquish control to individual menu controls
-        onMenuTab = false;
       }
       
     } else if (!menuSwitch.showMenu) {
