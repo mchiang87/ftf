@@ -13,12 +13,12 @@ public class LearnedRecipes : MonoBehaviour {
   void Start() {
     learnedRecipes = new List<Recipe>();
     recipeListControl = FindObjectOfType<RecipeListControl>();
-
+    LearnRecipe(0);
     // once save inventory implemented, below makes more sense
     if (learnedRecipes.Any()) {
       for(int i = 0; i < learnedRecipes.Count; i++) {
         Debug.Log(learnedRecipes[i].name);
-        recipeListControl.UpdateTextEntry(learnedRecipes[i].name, Color.white, i);
+        recipeListControl.UpdateTextEntry(learnedRecipes[i].name, Color.white, learnedRecipes[i].ID);
       }
     }
   }

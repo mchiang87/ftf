@@ -30,46 +30,13 @@ public class MenuManager : MonoBehaviour {
       "Settings",
     };
 
-    menuItems = new List<List<string>> {
-      // Party Menu Items
-      new List<string> {
-        // Party Menu SubItems
-        "Equip1",
-        "Equip2",
-        "Equip3",
-      },
-      // Inventory Menu Items
-      new List<string> {
-        // Inventory Menu Sub Items
-        "Inv1"
-      },
-      // Recipes Menu Items
-      new List<string> {
-        // Recipes Menu Sub Items
-        "Rec1"
-      },
-      // Journal Menu Items
-      new List<string> {
-        // Journal Menu Sub Items
-        "Jour1"
-      },
-      // Settings Menu Items
-      new List<string> {
-        // Settings Menu Sub Item
-        "Set1"
-      },
-    };
     onMenuTab = true;
     menuTabCount = menuTabs.Count;
-    menuItemCount = menuItems.Count;
     anim = GetComponent<Animator>();
     originalSelectPos = new Vector3(selector.transform.position.x,selector.transform.position.y, 0f);
   }
 
   void Update() {
-    // Menu updates
-    // if (menuTabIndex = menuTabs[])
-
     // Menu Navigation
     if (menuSwitch.showMenu && onMenuTab) {
       // select right
@@ -100,9 +67,11 @@ public class MenuManager : MonoBehaviour {
         // relinquish control to individual menu controls
         onMenuTab = false;
       }
-    } else {
+      
+    } else if (!menuSwitch.showMenu) {
       menuTabIndex = 0;
       menuItemIndex = 0;
+      onMenuTab = true;
       selector.transform.position = originalSelectPos;
       anim.Play("menu_party");
     }

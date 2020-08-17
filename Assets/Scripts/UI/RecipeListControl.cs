@@ -11,30 +11,38 @@ public class RecipeListControl : MonoBehaviour {
   private GameObject recipeEven;
   [SerializeField]
   private GameObject recipeOdd;
-  // private Inventory inventory;
-  private List<Recipe> learnedRecipes;
+  [SerializeField]
+  private RecipeDatabase recipeDatabase;
+  private LearnedRecipes learnedRecipes;
   private Recipe recipeDisplayed;
   private List<GameObject> textItems;
   private bool displayed;
+  private bool onSubMenu;
   // public Sprite itemPortrait;
   public Text recipeFlavorText;
   public Image recipeFirstIngredientSprite;
   public Image recipeSecondIngredientSprite;
   public Image recipeThirdIngredientSprite;
   public GameObject selector;
-  public float yOffset;
-  public Vector3 originalSelectPos;
+  public GameObject subSelector;
+  public float yOffsetMenu;
+  public float yOffsetSubMenu;
+  public Vector3 originalMenuSelectPos;
+    public Vector3 originalSubMenuSelectPos;
   public int menuItemIndex;
   private int menuItemCount;
+  public int subMenuItemIndex;
   
   public void Start() {
+    onSubMenu = false;
     displayed = false;
     textItems = new List<GameObject>();
-    originalSelectPos = new Vector3(selector.transform.position.x,selector.transform.position.y, 0f);
-    // for(int i = 0; i < inventory.Count; i++) {
-    //   Debug.Log(inventory[i].name);
-    //   inventoryListControl.CreateTextEntry(inventory[i].name, Color.white, i, 1);
-    // }
+    learnedRecipes = FindObjectOfType<LearnedRecipes>();
+    originalMenuSelectPos = new Vector3(selector.transform.position.x,selector.transform.position.y, 0f);
+    originalSubMenuSelectPos = new Vector3(subSelector.transform.position.x,subSelector.transform.position.y, 0f);
+    for(int i = 0; i < recipeDatabase.recipes.Count; i++) {
+      CreateTextEntry(recipeDatabase.recipes[i].name, Color.white, i);
+    }
   }
 
   public void Update() {
@@ -45,12 +53,12 @@ public class RecipeListControl : MonoBehaviour {
     menuItemCount = textItems.Count();
     // Menu Navigation
       // select down
-      if (displayed == true) {
+      if (displayed == true && !onSubMenu) {
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
           if (menuItemIndex < menuItemCount - 1) {
             menuItemIndex++;
             Vector3 position = selector.transform.position;
-            position.y -= yOffset;
+            position.y -= yOffsetMenu;
             selector.transform.position = position;
             SetRecipeFlavorText(menuItemIndex);
           }
@@ -61,29 +69,57 @@ public class RecipeListControl : MonoBehaviour {
           if (menuItemIndex > 0) {
             menuItemIndex--;
             Vector3 position = selector.transform.position;
-            position.y += yOffset;
+            position.y += yOffsetMenu;
             selector.transform.position = position;
             SetRecipeFlavorText(menuItemIndex);
           }
         }
 
-        // if (Input.GetKeyDown(KeyCode.Space)) {
-        //   // Select menu item and use for submenu if exist
-        // }
+        if (Input.GetKeyDown(KeyCode.Space)) {
+          // Select menu item and use for submenu if exist
+          onSubMenu = true;
+        }
+      } else if (onSubMenu) {
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+          if (subMenuItemIndex <  2) {
+            subMenuItemIndex++;
+            Vector3 position = subSelector.transform.position;
+            position.y -= yOffsetSubMenu;
+            subSelector.transform.position = position;
+          }
+        }
+
+        // select up
+        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+          if (subMenuItemIndex > 0) {
+            subMenuItemIndex--;
+            Vector3 position = subSelector.transform.position;
+            position.y += yOffsetSubMenu;
+            subSelector.transform.position = position;
+          }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+          // Opens up List of possible ingredients for ingredient slot
+        }
       } else {
       menuItemIndex = 0;
-      selector.transform.position = originalSelectPos;
+      selector.transform.position = originalMenuSelectPos;
+      subSelector.transform.position = originalSubMenuSelectPos;
     }
   }
 
   // Creates a new text Entry
   public void CreateTextEntry(string newText, Color newColor, int id) {
-    GameObject listRecipeEven = Instantiate(recipeEven) as GameObject;
-    GameObject listRecipeOdd = Instantiate(recipeOdd) as GameObject;
-    listRecipeEven.SetActive(true);
-    listRecipeEven.GetComponent<ListText>().SetText(newText, newColor, id);
-    listRecipeEven.transform.SetParent(recipeEven.transform.parent, false);
-    textItems.Add(listRecipeEven.gameObject);
+    GameObject recipe = recipeOdd;
+    if (id % 2 == 0) {
+      recipe = recipeEven;
+    }
+    GameObject listRecipe = Instantiate(recipe) as GameObject;
+    listRecipe.SetActive(true);
+    listRecipe.GetComponent<ListText>().SetText(newText, newColor, id);
+    listRecipe.transform.SetParent(recipe.transform.parent, false);
+    textItems.Add(listRecipe.gameObject);
   }
 
   public void UpdateTextEntry(string newText, Color newColor, int id) {
@@ -92,8 +128,7 @@ public class RecipeListControl : MonoBehaviour {
   }
 
   public void SetRecipeFlavorText(int index) {
-    learnedRecipes = FindObjectOfType<LearnedRecipes>().learnedRecipes;
-    recipeDisplayed = learnedRecipes.Find(it => it.ID == textItems[index].GetComponent<ListText>().id);
+    recipeDisplayed = learnedRecipes.learnedRecipes.Find(it => it.ID == textItems[index].GetComponent<ListText>().id);
     recipeFlavorText.text = recipeDisplayed.flavorText;
     // recipePortrait = recipeDisplayed.portrait;
   }

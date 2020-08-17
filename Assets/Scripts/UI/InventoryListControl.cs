@@ -9,7 +9,6 @@ public class InventoryListControl : MonoBehaviour {
 
   [SerializeField]
   private GameObject item;
-  // private Inventory inventory;
   private List<Item> inventory;
   private Item itemDisplayed;
   private List<GameObject> textItems;
@@ -74,7 +73,7 @@ public class InventoryListControl : MonoBehaviour {
   }
 
   public void RemoveTextEntry(int id) {
-    
+
   }
 
   public void SetItemDescription(int index) {
